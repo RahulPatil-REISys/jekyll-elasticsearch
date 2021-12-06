@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Remove all files .pyc with recrusive method</title>
+    <title>Python Permutations</title>
     <base href="/jekyll">
     <link rel="stylesheet" href="./assets/uswds/css/uswds.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -226,34 +226,27 @@
 
     <section class="grid-container usa-section">
         <div class="post">
-    <h1 class="post-title">Remove all files .pyc with recrusive method</h1>
-    <h6 style="display:none">/post/remove-all-files-pyc-with-recrusive-method/</h6>
-    <h4>2016-04-19 13:09:34 +0530</h4>
-    <h5>   python, bash</h5>
+    <h1 class="post-title">Python Permutations</h1>
+    <h6 style="display:none">/jekyll/post/python-permutations/</h6>
+    <h4>2016-04-19 18:01:43 +0530</h4>
+    <h5>   python</h5>
     <article class="post-content">
-        <p>This method simple but important. Example in your project dir is like this:</p>
+        <p>This simply how to implement the module of permutations in python.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">project_dir</span><span class="o">/</span>
-           <span class="n">__init__</span><span class="p">.</span><span class="nf">py</span>
-           <span class="n">__init__</span><span class="p">.</span><span class="nf">pyc</span>
-           <span class="n">something</span><span class="p">.</span><span class="nf">py</span>
-           <span class="n">something</span><span class="p">.</span><span class="nf">pyc</span>
-           <span class="o">...</span>
-           <span class="n">core</span><span class="o">/</span>
-               <span class="n">__init__</span><span class="p">.</span><span class="nf">py</span>
-               <span class="n">__init__</span><span class="p">.</span><span class="nf">pyc</span>
-               <span class="n">build</span><span class="p">.</span><span class="nf">py</span>
-               <span class="n">build</span><span class="p">.</span><span class="nf">pyc</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">itertools</span> <span class="n">import</span> <span class="n">permutations</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">perms</span> <span class="o">=</span> <span class="p">[</span><span class="s1">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nb">p</span><span class="p">)</span><span class="o">+</span><span class="s2">"@gmail.com"</span> <span class="k">for</span> <span class="nb">p</span> <span class="k">in</span> <span class="n">permutations</span><span class="p">(</span><span class="s1">'abc'</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">email</span> <span class="k">in</span> <span class="ss">perms:
+</span><span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">abc</span><span class="vi">@gmail</span><span class="p">.</span><span class="nf">com</span>
+<span class="n">acb</span><span class="vi">@gmail</span><span class="p">.</span><span class="nf">com</span>
+<span class="n">bac</span><span class="vi">@gmail</span><span class="p">.</span><span class="nf">com</span>
+<span class="n">bca</span><span class="vi">@gmail</span><span class="p">.</span><span class="nf">com</span>
+<span class="n">cab</span><span class="vi">@gmail</span><span class="p">.</span><span class="nf">com</span>
+<span class="n">cba</span><span class="vi">@gmail</span><span class="p">.</span><span class="nf">com</span>
+<span class="o">&gt;&gt;&gt;</span></code></pre></figure>
 
-<p>Deleting the <code class="language-plaintext highlighter-rouge">.pyc</code> files one by one would be spending a lot of time. and you will be bored. There is sample how to handle it.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ find your_dir -name *.pyc -delete
-</code></pre></div></div>
-
-<p>OR, if you work inside current directory.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ find . -name *.pyc -delete
-</code></pre></div></div>
 
     </article>
 </div>
@@ -266,9 +259,9 @@
             <li><a name="jekyll">jekyll</a>
                 <ul>
                 
-                  <li><a href="/post/welcome-to-jekyll/">Welcome to Jekyll!</a></li>
+                  <li><a href="/jekyll/post/welcome-to-jekyll/">Welcome to Jekyll!</a></li>
                 
-                  <li><a href="/post/welcome1-to-jekyll/">Welcome to Jekyll!</a></li>
+                  <li><a href="/jekyll/post/welcome1-to-jekyll/">Welcome to Jekyll!</a></li>
                 
                 </ul>
               </li>
@@ -276,13 +269,13 @@
             <li><a name="python">python</a>
                 <ul>
                 
-                  <li><a href="/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
+                  <li><a href="/jekyll/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
                 
-                  <li><a href="/post/python-permutations/">Python Permutations</a></li>
+                  <li><a href="/jekyll/post/python-permutations/">Python Permutations</a></li>
                 
-                  <li><a href="/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
+                  <li><a href="/jekyll/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
                 
-                  <li><a href="/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
+                  <li><a href="/jekyll/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
                 
                 </ul>
               </li>
@@ -290,11 +283,11 @@
             <li><a name="django">django</a>
                 <ul>
                 
-                  <li><a href="/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
+                  <li><a href="/jekyll/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
                 
-                  <li><a href="/post/replace-email-backend-gmail-to-postmarkapp-for-django/">Replace backend gmail to Postmarkapp for Django</a></li>
+                  <li><a href="/jekyll/post/replace-email-backend-gmail-to-postmarkapp-for-django/">Replace backend gmail to Postmarkapp for Django</a></li>
                 
-                  <li><a href="/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
+                  <li><a href="/jekyll/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
                 
                 </ul>
               </li>
@@ -302,11 +295,11 @@
             <li><a name="bash">bash</a>
                 <ul>
                 
-                  <li><a href="/post/download-recrusive-files-inside-index-of-in-linux-using-wget/">Download recrusive files inside index-of in Linux using wget</a></li>
+                  <li><a href="/jekyll/post/download-recrusive-files-inside-index-of-in-linux-using-wget/">Download recrusive files inside index-of in Linux using wget</a></li>
                 
-                  <li><a href="/post/simple-bash-scripting-for-login-before-open-the-terminal/">Simple bash scripting for login before open the terminal</a></li>
+                  <li><a href="/jekyll/post/simple-bash-scripting-for-login-before-open-the-terminal/">Simple bash scripting for login before open the terminal</a></li>
                 
-                  <li><a href="/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
+                  <li><a href="/jekyll/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
                 
                 </ul>
               </li>

@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Download recrusive files inside index-of in Linux using wget</title>
+    <title>Remove all files .pyc with recrusive method</title>
     <base href="/jekyll">
     <link rel="stylesheet" href="./assets/uswds/css/uswds.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -226,43 +226,34 @@
 
     <section class="grid-container usa-section">
         <div class="post">
-    <h1 class="post-title">Download recrusive files inside index-of in Linux using wget</h1>
-    <h6 style="display:none">/post/download-recrusive-files-inside-index-of-in-linux-using-wget/</h6>
-    <h4>2016-04-19 18:09:02 +0530</h4>
-    <h5>   bash</h5>
+    <h1 class="post-title">Remove all files .pyc with recrusive method</h1>
+    <h6 style="display:none">/jekyll/post/remove-all-files-pyc-with-recrusive-method/</h6>
+    <h4>2016-04-19 13:09:34 +0530</h4>
+    <h5>   python, bash</h5>
     <article class="post-content">
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ wget -r --no-parent --reject "index.html*" http://125.160.17.22/dokumen/IGN/Panduan_OpenOffice.org_2.0/
+        <p>This method simple but important. Example in your project dir is like this:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">project_dir</span><span class="o">/</span>
+           <span class="n">__init__</span><span class="p">.</span><span class="nf">py</span>
+           <span class="n">__init__</span><span class="p">.</span><span class="nf">pyc</span>
+           <span class="n">something</span><span class="p">.</span><span class="nf">py</span>
+           <span class="n">something</span><span class="p">.</span><span class="nf">pyc</span>
+           <span class="o">...</span>
+           <span class="n">core</span><span class="o">/</span>
+               <span class="n">__init__</span><span class="p">.</span><span class="nf">py</span>
+               <span class="n">__init__</span><span class="p">.</span><span class="nf">pyc</span>
+               <span class="n">build</span><span class="p">.</span><span class="nf">py</span>
+               <span class="n">build</span><span class="p">.</span><span class="nf">pyc</span></code></pre></figure>
+
+<p>Deleting the <code class="language-plaintext highlighter-rouge">.pyc</code> files one by one would be spending a lot of time. and you will be bored. There is sample how to handle it.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ find your_dir -name *.pyc -delete
 </code></pre></div></div>
 
-<p>For me I have to pass the –no-parent option, otherwise it will follow the link in the directory index on my site to the parent directory. So the command would look like this:</p>
+<p>OR, if you work inside current directory.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget -r --no-parent http://mysite.com/configs/.vim/
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ find . -name *.pyc -delete
 </code></pre></div></div>
-
-<p>Edit: To avoid downloading the index.html files, use this command:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget -r --no-parent --reject "index.html*" http://mysite.com/configs/.vim/
-</code></pre></div></div>
-
-<p>The Parameters are:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">-r</code>     //recursive Download</li>
-  <li><code class="language-plaintext highlighter-rouge">--no-parent</code> // Don´t download something from the parent directory</li>
-  <li><code class="language-plaintext highlighter-rouge">-l1</code> //just download the directory (tzivi in your case)</li>
-  <li><code class="language-plaintext highlighter-rouge">-l2</code> //download the directory and all level 1 subfolders (‘tzivi/something’ but not ‘tivizi/somthing/foo’)</li>
-</ul>
-
-<p>And so on. If you insert no <code class="language-plaintext highlighter-rouge">-l</code> option, wget will use <code class="language-plaintext highlighter-rouge">-l</code> 5 automatically.<br />
-If you insert a -l 0 you´ll download the whole internet, because wget will follow every link it finds.</p>
-
-<p><strong>Refference:</strong></p>
-
-<ul>
-  <li><a href="http://stackoverflow.com/a/19695143/3445802">http://stackoverflow.com/a/19695143/3445802</a></li>
-  <li><a href="http://stackoverflow.com/a/273776/3445802">http://stackoverflow.com/a/273776/3445802</a></li>
-</ul>
-
 
     </article>
 </div>
@@ -275,9 +266,9 @@ If you insert a -l 0 you´ll download the whole internet, because wget will foll
             <li><a name="jekyll">jekyll</a>
                 <ul>
                 
-                  <li><a href="/post/welcome-to-jekyll/">Welcome to Jekyll!</a></li>
+                  <li><a href="/jekyll/post/welcome-to-jekyll/">Welcome to Jekyll!</a></li>
                 
-                  <li><a href="/post/welcome1-to-jekyll/">Welcome to Jekyll!</a></li>
+                  <li><a href="/jekyll/post/welcome1-to-jekyll/">Welcome to Jekyll!</a></li>
                 
                 </ul>
               </li>
@@ -285,13 +276,13 @@ If you insert a -l 0 you´ll download the whole internet, because wget will foll
             <li><a name="python">python</a>
                 <ul>
                 
-                  <li><a href="/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
+                  <li><a href="/jekyll/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
                 
-                  <li><a href="/post/python-permutations/">Python Permutations</a></li>
+                  <li><a href="/jekyll/post/python-permutations/">Python Permutations</a></li>
                 
-                  <li><a href="/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
+                  <li><a href="/jekyll/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
                 
-                  <li><a href="/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
+                  <li><a href="/jekyll/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
                 
                 </ul>
               </li>
@@ -299,11 +290,11 @@ If you insert a -l 0 you´ll download the whole internet, because wget will foll
             <li><a name="django">django</a>
                 <ul>
                 
-                  <li><a href="/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
+                  <li><a href="/jekyll/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
                 
-                  <li><a href="/post/replace-email-backend-gmail-to-postmarkapp-for-django/">Replace backend gmail to Postmarkapp for Django</a></li>
+                  <li><a href="/jekyll/post/replace-email-backend-gmail-to-postmarkapp-for-django/">Replace backend gmail to Postmarkapp for Django</a></li>
                 
-                  <li><a href="/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
+                  <li><a href="/jekyll/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
                 
                 </ul>
               </li>
@@ -311,11 +302,11 @@ If you insert a -l 0 you´ll download the whole internet, because wget will foll
             <li><a name="bash">bash</a>
                 <ul>
                 
-                  <li><a href="/post/download-recrusive-files-inside-index-of-in-linux-using-wget/">Download recrusive files inside index-of in Linux using wget</a></li>
+                  <li><a href="/jekyll/post/download-recrusive-files-inside-index-of-in-linux-using-wget/">Download recrusive files inside index-of in Linux using wget</a></li>
                 
-                  <li><a href="/post/simple-bash-scripting-for-login-before-open-the-terminal/">Simple bash scripting for login before open the terminal</a></li>
+                  <li><a href="/jekyll/post/simple-bash-scripting-for-login-before-open-the-terminal/">Simple bash scripting for login before open the terminal</a></li>
                 
-                  <li><a href="/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
+                  <li><a href="/jekyll/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
                 
                 </ul>
               </li>

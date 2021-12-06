@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Simple bash scripting for login before open the terminal</title>
+    <title>Replace backend gmail to Postmarkapp for Django</title>
     <base href="/jekyll">
     <link rel="stylesheet" href="./assets/uswds/css/uswds.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -226,39 +226,39 @@
 
     <section class="grid-container usa-section">
         <div class="post">
-    <h1 class="post-title">Simple bash scripting for login before open the terminal</h1>
-    <h6 style="display:none">/post/simple-bash-scripting-for-login-before-open-the-terminal/</h6>
-    <h4>2016-04-19 17:49:21 +0530</h4>
-    <h5>   bash</h5>
+    <h1 class="post-title">Replace backend gmail to Postmarkapp for Django</h1>
+    <h6 style="display:none">/jekyll/post/replace-email-backend-gmail-to-postmarkapp-for-django/</h6>
+    <h4>2016-04-19 18:45:33 +0530</h4>
+    <h5>   django</h5>
     <article class="post-content">
-        <p>Add this in your file of <code class="language-plaintext highlighter-rouge">/etc/bash.bashrc</code>, makesure you logged in as root.</p>
+        <h4 id="1-install-module-of-python-postmark">1. Install module of Python Postmark</h4>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">### ===============================================</span>
-<span class="c1">### Simple bash scripting for login before open the terminal.</span>
-<span class="c1">### Credit: &lt;Summon Agus&gt; - agus@python.web.id</span>
-<span class="c1">### Location, end script of: /etc/bash.bashrc</span>
-<span class="c1">### ===============================================</span>
+<p>Install this module manually from souce inside your environtment: <a href="https://github.com/themartorana/python-postmark">https://github.com/themartorana/python-postmark</a></p>
 
-<span class="k">while</span> <span class="kp">true</span><span class="p">;</span> <span class="k">do</span>
-  <span class="c1"># Don't exit at Ctrl-C</span>
-  <span class="nb">trap</span> <span class="s2">"echo"</span> <span class="no">SIGINT</span>
+<blockquote>
+  <p>If you work on <code class="language-plaintext highlighter-rouge">Django==1.9.*</code>, requirements only <code class="language-plaintext highlighter-rouge">mock</code>.</p>
+</blockquote>
 
-  <span class="nb">printf</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
-  <span class="n">echo</span> <span class="o">-</span><span class="n">n</span> <span class="s2">" Who are you guys? "</span><span class="p">;</span> <span class="n">read</span> <span class="o">-</span><span class="n">s</span> <span class="nb">name</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">[</span> <span class="s2">"$name"</span> <span class="o">==</span> <span class="s2">"agus"</span> <span class="p">];</span> <span class="k">then</span>
-    <span class="n">reset</span>
-    <span class="nb">printf</span> <span class="s2">"</span><span class="se">\n</span><span class="s2"> Welcome my KING! you are the best!!</span><span class="se">\n</span><span class="s2">"</span>
-    <span class="nb">printf</span> <span class="s2">" "</span><span class="p">;</span> <span class="n">date</span><span class="p">;</span>
-    <span class="nb">printf</span> <span class="s2">" Please start your activity with Basmalah</span><span class="se">\n\n</span><span class="s2">"</span>
-    <span class="k">break</span>
-  <span class="k">else</span>
-    <span class="nb">printf</span> <span class="s2">"</span><span class="se">\n</span><span class="s2"> Heey you! why you here!! You are not owner of this machine!</span><span class="se">\n</span><span class="s2">"</span>
-  <span class="n">fi</span>
-<span class="n">done</span>
+<h4 id="2-register-and-put-the-server-keys">2. Register and Put the Server Keys</h4>
 
-<span class="c1">### ===============================================</span>
-<span class="c1">### END</span>
-<span class="c1">### ===============================================</span></code></pre></figure>
+<p>Register and put your server API token here: https://account.postmarkapp.com/servers/101010/credentials . <code class="language-plaintext highlighter-rouge">101010</code> is id of your server.</p>
+
+<blockquote>
+  <p>Makesure verified your SPF and DKIM. this configurations to allowing the permission from your domain for signature.</p>
+</blockquote>
+
+<h4 id="3-configure-in-settingspy">3. Configure in <code class="language-plaintext highlighter-rouge">settings.py</code></h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">EMAIL_USE_TLS</span>        <span class="o">=</span> <span class="no">True</span>
+<span class="no">EMAIL_HOST</span>           <span class="o">=</span> <span class="s1">'smtp.postmarkapp.com'</span>
+<span class="no">EMAIL_PORT</span>           <span class="o">=</span> <span class="mi">587</span>
+<span class="no">POSTMARK_API_KEY</span>     <span class="o">=</span> <span class="s1">'yourkey-yourkey-yourkey-yourkey'</span>
+<span class="no">POSTMARK_SENDER</span>      <span class="o">=</span> <span class="s1">'your_company_email@domain.com'</span>
+<span class="no">EMAIL_HOST_USER</span>      <span class="o">=</span> <span class="no">POSTMARK_SENDER</span>
+<span class="no">DEFAULT_FROM_EMAIL</span>   <span class="o">=</span> <span class="no">POSTMARK_SENDER</span>
+<span class="no">POSTMARK_TEST_MODE</span>   <span class="o">=</span> <span class="no">False</span>
+<span class="no">POSTMARK_TRACK_OPENS</span> <span class="o">=</span> <span class="no">False</span>
+<span class="no">EMAIL_BACKEND</span>        <span class="o">=</span> <span class="s1">'postmark.django_backend.EmailBackend'</span></code></pre></figure>
 
     </article>
 </div>
@@ -271,9 +271,9 @@
             <li><a name="jekyll">jekyll</a>
                 <ul>
                 
-                  <li><a href="/post/welcome-to-jekyll/">Welcome to Jekyll!</a></li>
+                  <li><a href="/jekyll/post/welcome-to-jekyll/">Welcome to Jekyll!</a></li>
                 
-                  <li><a href="/post/welcome1-to-jekyll/">Welcome to Jekyll!</a></li>
+                  <li><a href="/jekyll/post/welcome1-to-jekyll/">Welcome to Jekyll!</a></li>
                 
                 </ul>
               </li>
@@ -281,13 +281,13 @@
             <li><a name="python">python</a>
                 <ul>
                 
-                  <li><a href="/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
+                  <li><a href="/jekyll/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
                 
-                  <li><a href="/post/python-permutations/">Python Permutations</a></li>
+                  <li><a href="/jekyll/post/python-permutations/">Python Permutations</a></li>
                 
-                  <li><a href="/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
+                  <li><a href="/jekyll/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
                 
-                  <li><a href="/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
+                  <li><a href="/jekyll/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
                 
                 </ul>
               </li>
@@ -295,11 +295,11 @@
             <li><a name="django">django</a>
                 <ul>
                 
-                  <li><a href="/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
+                  <li><a href="/jekyll/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
                 
-                  <li><a href="/post/replace-email-backend-gmail-to-postmarkapp-for-django/">Replace backend gmail to Postmarkapp for Django</a></li>
+                  <li><a href="/jekyll/post/replace-email-backend-gmail-to-postmarkapp-for-django/">Replace backend gmail to Postmarkapp for Django</a></li>
                 
-                  <li><a href="/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
+                  <li><a href="/jekyll/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
                 
                 </ul>
               </li>
@@ -307,11 +307,11 @@
             <li><a name="bash">bash</a>
                 <ul>
                 
-                  <li><a href="/post/download-recrusive-files-inside-index-of-in-linux-using-wget/">Download recrusive files inside index-of in Linux using wget</a></li>
+                  <li><a href="/jekyll/post/download-recrusive-files-inside-index-of-in-linux-using-wget/">Download recrusive files inside index-of in Linux using wget</a></li>
                 
-                  <li><a href="/post/simple-bash-scripting-for-login-before-open-the-terminal/">Simple bash scripting for login before open the terminal</a></li>
+                  <li><a href="/jekyll/post/simple-bash-scripting-for-login-before-open-the-terminal/">Simple bash scripting for login before open the terminal</a></li>
                 
-                  <li><a href="/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
+                  <li><a href="/jekyll/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
                 
                 </ul>
               </li>
