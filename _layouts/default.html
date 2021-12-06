@@ -1,0 +1,41 @@
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/uswds/css/uswds.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+    {% include header.html %}
+    <hr>
+
+    <section class="grid-container usa-section">
+        {{ content }}
+        
+        <!-- <ul>
+            {% for category in site.categories %}
+            <li><a name="{{ category | first }}">{{ category | first }}</a>
+                <ul>
+                {% for post in category.last %}
+                  <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+                {% endfor %}
+                </ul>
+              </li>
+            {% endfor %}
+            </ul> -->
+
+    </section>
+
+    {% include footer.html %}
+
+    
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/assets/uswds/js/uswds.min.js"></script>
+    <!-- Script pointing to search-script.js -->
+</body>
+</html>

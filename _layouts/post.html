@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<div class="post">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <h6 style="display:none">{{page.url}}</h6>
+    <h4>{{ page.date }}</h4>
+    <h5>   {{ page.categories | join: ', ' }}</h5>
+    <article class="post-content">
+        {{ content }}
+    </article>
+</div>
+
+
