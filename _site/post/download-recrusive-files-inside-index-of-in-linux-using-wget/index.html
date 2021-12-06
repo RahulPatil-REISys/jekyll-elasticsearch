@@ -1,0 +1,480 @@
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Download recrusive files inside index-of in Linux using wget</title>
+    <link rel="stylesheet" href="/assets/uswds/css/uswds.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+<section class="usa-banner" aria-label="Official government website">
+    <div class="usa-accordion">
+        <header class="usa-banner__header">
+            <div class="usa-banner__inner">
+                <div class="grid-col-auto">
+                    <img
+                    class="usa-banner__header-flag"
+                    src="/assets/uswds/img/us_flag_small.png"
+                    alt="U.S. flag"
+                    />
+                </div>
+                <div class="grid-col-fill tablet:grid-col-auto">
+                    <p class="usa-banner__header-text">
+                        An official website of the United States government
+                    </p>
+                    <p class="usa-banner__header-action" aria-hidden="true">
+                        Here’s how you know
+                    </p>
+                </div>
+                <button
+                class="usa-accordion__button usa-banner__button"
+                aria-expanded="false"
+                aria-controls="gov-banner"
+                >
+                <span class="usa-banner__button-text">Here’s how you know</span>
+            </button>
+        </div>
+    </header>
+    <div class="usa-banner__content usa-accordion__content" id="gov-banner">
+        <div class="grid-row grid-gap-lg">
+            <div class="usa-banner__guidance tablet:grid-col-6">
+                <img
+                class="usa-banner__icon usa-media-block__img"
+                src="/assets/uswds/img/icon-dot-gov.svg"
+                role="img"
+                alt=""
+                aria-hidden="true"
+                />
+                <div class="usa-media-block__body">
+                    <p>
+                        <strong> Official websites use .gov </strong>
+                        <br />
+                        A <strong>.gov</strong> website belongs to an official government
+                        organization in the United States.
+                    </p>
+                </div>
+            </div>
+            <div class="usa-banner__guidance tablet:grid-col-6">
+                <img
+                class="usa-banner__icon usa-media-block__img"
+                src="/assets/uswds/img/icon-https.svg"
+                role="img"
+                alt=""
+                aria-hidden="true"
+                />
+                <div class="usa-media-block__body">
+                    <p>
+                        <strong> Secure .gov websites use HTTPS </strong>
+                        <br />
+                        A <strong>lock</strong> (
+                        <span class="icon-lock"
+                        ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="52"
+                        height="64"
+                        viewBox="0 0 52 64"
+                        class="usa-banner__lock-image"
+                        role="img"
+                        aria-labelledby="banner-lock-title banner-lock-description"
+                        focusable="false"
+                        >
+                        <title id="banner-lock-title">Lock</title>
+                        <desc id="banner-lock-description">A locked padlock</desc>
+                        <path
+                        fill="#000000"
+                        fill-rule="evenodd"
+                        d="M26 0c10.493 0 19 8.507 19 19v9h3a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h3v-9C7 8.507 15.507 0 26 0zm0 8c-5.979 0-10.843 4.77-10.996 10.712L15 19v9h22v-9c0-6.075-4.925-11-11-11z"
+                        /></svg>
+                    </span>
+                    ) or <strong>https://</strong> means you’ve safely connected to
+                    the .gov website. Share sensitive information only on official,
+                    secure websites.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+
+<div class="usa-overlay"></div>
+<header class="usa-header usa-header--basic">
+    <div class="usa-nav-container">
+        <div class="usa-navbar">
+            <div class="usa-logo" id="basic-logo">
+                <em class="usa-logo__text">
+                    <a href="/" title="Blogging">
+                        Blogging
+                    </a>
+                </em>
+            </div>
+            <button class="usa-menu-btn">Menu</button>
+        </div>
+        <nav aria-label="Primary navigation" class="usa-nav">
+            <button class="usa-nav__close">
+                <img src="/assets/uswds/img/usa-icons/close.svg" role="img" alt="Close" />
+            </button>
+            <ul class="usa-nav__primary usa-accordion">
+        <li class="usa-nav__primary-item">
+            <a href="/about" class="usa-nav__link">
+                <span>About</span>
+            </a>
+        </li>
+        <li class="usa-nav__primary-item">
+            <a href="/categories" class="usa-nav__link">
+                <span>Categories</span>
+            </a>
+        </li>
+    </ul>
+    
+    <div id="search-container">
+        <form class="usa-search usa-search--small" role="search">
+            <label class="usa-sr-only" for="basic-search-field-en-small">
+                Search
+            </label>
+            <input
+            class="usa-input"
+            id="search-input"
+            type="search"
+            name="search"
+            />
+            <button class="usa-button">
+                <span class="usa-sr-only">Search</span>
+            </button>
+            <span class="ds-dropdown-menu ds-with-1" role="listbox" id="algolia-autocomplete-listbox-0" style="position: absolute; top: 100%; z-index: 100; left: 0px; right: auto; display: block;width: 100%;">
+                <div class="ds-dataset-1" style="max-height: 400px;overflow: auto;">
+                <ul id="results-container" style="padding-left: 15px; background-color: #EEE;"></ul>
+                </div>
+            </span>
+        </form>
+    </div>
+</nav>
+</div>
+</header>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
+<script src="/simple-jekyll-search.min.js" type="text/javascript"></script>
+<!-- <script src="/js/tags.js"></script> -->
+
+<!-- Configuration -->
+<script>
+    // SimpleJekyllSearch({
+    //     searchInput: document.getElementById('search-input'),
+    //     resultsContainer: document.getElementById('results-container'),
+    //     searchResultTemplate: '<div><a href="{url}"><h3>{title}</h3></a><span>{date}</span></div>',
+    //     // json: '/search.json',
+
+    //     templateMiddleware: function(prop, value, template) {
+    //         console.log(prop)
+    //         // console.log(value)
+    //         // console.log(template)
+    //     }
+    // })
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('input').keyup(_.debounce(function(){
+            var $this=$(this);
+            //alert( $this.val() );
+            var val = $this.val();
+            console.log(val);
+            $.ajax({url: "http://localhost:9200/_search?q="+val, 
+                success: function(result) {
+                $('#results-container').empty();
+                console.log(result);
+                console.log(result.hits.hits);
+                $.each(result.hits.hits,function(index,res){
+                    console.log(res._source);
+                    var li = `<li> <a href="${res._source.url}"><h3>${res._source.title}</h3></a><span>${res._source.date}</span> </li>`;
+                    $('#results-container').append(li);
+                });
+                if(val.length != 0 && result.hits.hits.length == 0){
+                    var li = `<li> <h3>No Result Found</h3></li>`;
+                    $('#results-container').append(li);
+                } else {
+                    $('#results-container').empty();
+                }
+                
+            },error:function(err){
+                console.log(err);
+            }});
+        },500));
+    });
+
+
+        // console.log('ajax');
+</script>
+    <hr>
+
+    <section class="grid-container usa-section">
+        <div class="post">
+    <h1 class="post-title">Download recrusive files inside index-of in Linux using wget</h1>
+    <h6 style="display:none">/post/download-recrusive-files-inside-index-of-in-linux-using-wget/</h6>
+    <h4>2016-04-19 18:09:02 +0530</h4>
+    <h5>   bash</h5>
+    <article class="post-content">
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ wget -r --no-parent --reject "index.html*" http://125.160.17.22/dokumen/IGN/Panduan_OpenOffice.org_2.0/
+</code></pre></div></div>
+
+<p>For me I have to pass the –no-parent option, otherwise it will follow the link in the directory index on my site to the parent directory. So the command would look like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget -r --no-parent http://mysite.com/configs/.vim/
+</code></pre></div></div>
+
+<p>Edit: To avoid downloading the index.html files, use this command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget -r --no-parent --reject "index.html*" http://mysite.com/configs/.vim/
+</code></pre></div></div>
+
+<p>The Parameters are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-r</code>     //recursive Download</li>
+  <li><code class="language-plaintext highlighter-rouge">--no-parent</code> // Don´t download something from the parent directory</li>
+  <li><code class="language-plaintext highlighter-rouge">-l1</code> //just download the directory (tzivi in your case)</li>
+  <li><code class="language-plaintext highlighter-rouge">-l2</code> //download the directory and all level 1 subfolders (‘tzivi/something’ but not ‘tivizi/somthing/foo’)</li>
+</ul>
+
+<p>And so on. If you insert no <code class="language-plaintext highlighter-rouge">-l</code> option, wget will use <code class="language-plaintext highlighter-rouge">-l</code> 5 automatically.<br />
+If you insert a -l 0 you´ll download the whole internet, because wget will follow every link it finds.</p>
+
+<p><strong>Refference:</strong></p>
+
+<ul>
+  <li><a href="http://stackoverflow.com/a/19695143/3445802">http://stackoverflow.com/a/19695143/3445802</a></li>
+  <li><a href="http://stackoverflow.com/a/273776/3445802">http://stackoverflow.com/a/273776/3445802</a></li>
+</ul>
+
+
+    </article>
+</div>
+
+
+
+        
+        <!-- <ul>
+            
+            <li><a name="jekyll">jekyll</a>
+                <ul>
+                
+                  <li><a href="/post/welcome-to-jekyll/">Welcome to Jekyll!</a></li>
+                
+                  <li><a href="/post/welcome1-to-jekyll/">Welcome to Jekyll!</a></li>
+                
+                </ul>
+              </li>
+            
+            <li><a name="python">python</a>
+                <ul>
+                
+                  <li><a href="/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
+                
+                  <li><a href="/post/python-permutations/">Python Permutations</a></li>
+                
+                  <li><a href="/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
+                
+                  <li><a href="/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
+                
+                </ul>
+              </li>
+            
+            <li><a name="django">django</a>
+                <ul>
+                
+                  <li><a href="/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
+                
+                  <li><a href="/post/replace-email-backend-gmail-to-postmarkapp-for-django/">Replace backend gmail to Postmarkapp for Django</a></li>
+                
+                  <li><a href="/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
+                
+                </ul>
+              </li>
+            
+            <li><a name="bash">bash</a>
+                <ul>
+                
+                  <li><a href="/post/download-recrusive-files-inside-index-of-in-linux-using-wget/">Download recrusive files inside index-of in Linux using wget</a></li>
+                
+                  <li><a href="/post/simple-bash-scripting-for-login-before-open-the-terminal/">Simple bash scripting for login before open the terminal</a></li>
+                
+                  <li><a href="/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
+                
+                </ul>
+              </li>
+            
+            </ul> -->
+
+    </section>
+
+    <footer class="usa-footer">
+    <div class="grid-container usa-footer__return-to-top">
+      <a href="#">Return to top</a>
+    </div>
+    <div class="usa-footer__primary-section">
+      <nav class="usa-footer__nav" aria-label="Footer navigation">
+        <ul class="grid-row grid-gap">
+          <li
+            class="
+              mobile-lg:grid-col-4
+              desktop:grid-col-auto
+              usa-footer__primary-content
+            "
+          >
+            <a class="usa-footer__primary-link" href="javascript:void(0);">
+              &lt;Primary link&gt;
+            </a>
+          </li>
+  
+          <li
+            class="
+              mobile-lg:grid-col-4
+              desktop:grid-col-auto
+              usa-footer__primary-content
+            "
+          >
+            <a class="usa-footer__primary-link" href="javascript:void(0);">
+              &lt;Primary link&gt;
+            </a>
+          </li>
+  
+          <li
+            class="
+              mobile-lg:grid-col-4
+              desktop:grid-col-auto
+              usa-footer__primary-content
+            "
+          >
+            <a class="usa-footer__primary-link" href="javascript:void(0);">
+              &lt;Primary link&gt;
+            </a>
+          </li>
+  
+          <li
+            class="
+              mobile-lg:grid-col-4
+              desktop:grid-col-auto
+              usa-footer__primary-content
+            "
+          >
+            <a class="usa-footer__primary-link" href="javascript:void(0);">
+              &lt;Primary link&gt;
+            </a>
+          </li>
+  
+          <li
+            class="
+              mobile-lg:grid-col-4
+              desktop:grid-col-auto
+              usa-footer__primary-content
+            "
+          >
+            <a class="usa-footer__primary-link" href="javascript:void(0);">
+              &lt;Primary link&gt;
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  
+    <div class="usa-footer__secondary-section">
+      <div class="grid-container">
+        <div class="grid-row grid-gap">
+          <div
+            class="
+              usa-footer__logo
+              grid-row
+              mobile-lg:grid-col-6 mobile-lg:grid-gap-2
+            "
+          >
+            <div class="mobile-lg:grid-col-auto">
+              <img
+                class="usa-footer__logo-img"
+                src="/assets/uswds/img/logo-img.png"
+                alt=""
+              />
+            </div>
+            <div class="mobile-lg:grid-col-auto">
+              <p class="usa-footer__logo-heading">&lt;Name of Agency&gt;</p>
+            </div>
+          </div>
+          <div class="usa-footer__contact-links mobile-lg:grid-col-6">
+            <div class="usa-footer__social-links grid-row grid-gap-1">
+              <div class="grid-col-auto">
+                <a
+                  class="usa-social-link usa-social-link--facebook"
+                  href="javascript:void(0);"
+                >
+                  <span>Facebook</span>
+                </a>
+              </div>
+  
+              <div class="grid-col-auto">
+                <a
+                  class="usa-social-link usa-social-link--twitter"
+                  href="javascript:void(0);"
+                >
+                  <span>Twitter</span>
+                </a>
+              </div>
+  
+              <div class="grid-col-auto">
+                <a
+                  class="usa-social-link usa-social-link--youtube"
+                  href="javascript:void(0);"
+                >
+                  <span>YouTube</span>
+                </a>
+              </div>
+  
+              <div class="grid-col-auto">
+                <a
+                  class="usa-social-link usa-social-link--instagram"
+                  href="javascript:void(0);"
+                >
+                  <span>Instagram</span>
+                </a>
+              </div>
+  
+              <div class="grid-col-auto">
+                <a
+                  class="usa-social-link usa-social-link--rss"
+                  href="javascript:void(0);"
+                >
+                  <span>RSS</span>
+                </a>
+              </div>
+            </div>
+            <h3 class="usa-footer__contact-heading">
+              &lt;Agency Contact Center&gt;
+            </h3>
+            <address class="usa-footer__address">
+              <div class="usa-footer__contact-info grid-row grid-gap">
+                <div class="grid-col-auto">
+                  <a href="tel:1-800-555-5555"> &lt;(800) 555-GOVT&gt; </a>
+                </div>
+                <div class="grid-col-auto">
+                  <a href="mailto:&lt;info@agency.gov&gt;">
+                    &lt;info@agency.gov&gt;
+                  </a>
+                </div>
+              </div>
+            </address>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+    
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/assets/uswds/js/uswds.min.js"></script>
+    <!-- Script pointing to search-script.js -->
+</body>
+</html>
