@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Welcome to Jekyll!</title>
+    <title>Email BackEnd with SMTP Gmail</title>
     <base href="/jekyll/">
     <link rel="stylesheet" href="./assets/uswds/css/uswds.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -219,29 +219,28 @@
     <div class="grid-container">
 
       <div class="post">
-    <h1 class="post-title">Welcome to Jekyll!</h1>
-    <h6 style="display:none">/jekyll/welcome-to-jekyll/</h6>
-    <h4>2021-11-19 14:37:00 +0530</h4>
-    <h5>   jekyll</h5>
+    <h1 class="post-title">Email BackEnd with SMTP Gmail</h1>
+    <h6 style="display:none">/email-backend-with-smtp-gmail/</h6>
+    <h4>2016-04-19 00:58:15 +0530</h4>
+    <h5>   python, django</h5>
     <article class="post-content">
-        <p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+        <p>Add this configurations in your <code class="language-plaintext highlighter-rouge">settings.py</code></p>
 
-<p>Jekyll requires blog post files to be named according to the following format:</p>
+<p>This configurations is if you work with <code class="language-plaintext highlighter-rouge">smtp.gmail.com</code>, other smtp is similiar with configurations.</p>
 
-<p><code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code></p>
+<ul>
+  <li>Unlock Captha: <a href="https://accounts.google.com/DisplayUnlockCaptcha">https://accounts.google.com/DisplayUnlockCaptcha</a></li>
+  <li>Change to active: <a href="https://www.google.com/settings/security/lesssecureapps">https://www.google.com/settings/security/lesssecureapps</a></li>
+</ul>
 
-<p>Where <code class="language-plaintext highlighter-rouge">YEAR</code> is a four-digit number, <code class="language-plaintext highlighter-rouge">MONTH</code> and <code class="language-plaintext highlighter-rouge">DAY</code> are both two-digit numbers, and <code class="language-plaintext highlighter-rouge">MARKUP</code> is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
-
-<p>Jekyll also offers powerful support for code snippets:</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
-
-<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
-
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EMAIL_HOST          = 'smtp.gmail.com'
+EMAIL_PORT          = 587
+EMAIL_HOST_USER     = 'your_gmail@gmail.com'
+EMAIL_HOST_PASSWORD = 'your_password'
+EMAIL_USE_TLS       = True
+DEFAULT_FROM_EMAIL  = EMAIL_HOST_USER
+EMAIL_BACKEND       = 'django.core.mail.backends.smtp.EmailBackend'
+</code></pre></div></div>
 
     </article>
 </div>
@@ -260,7 +259,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/welcome-to-jekyll/" style="text-decoration: none; color: #444;">
+                <a href="/welcome-to-jekyll/" style="text-decoration: none; color: #444;">
                 Welcome to Jekyll!
                 </a>
               </h1>
@@ -275,10 +274,10 @@
             <div class="post-content site-prose margin-top-4">
             
               <p class="post-excerpt">
-                <p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to...
+                You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/welcome-to-jekyll/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/welcome-to-jekyll/">Continue reading</a></p>
             
             </div>
           </article>
@@ -292,7 +291,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/adding-broadcast-mail-to-all-users-registered-inside-django-admin/" style="text-decoration: none; color: #444;">
+                <a href="/adding-broadcast-mail-to-all-users-registered-inside-django-admin/" style="text-decoration: none; color: #444;">
                 Adding BroadCast Mail to All Users Registered inside Django Admin
                 </a>
               </h1>
@@ -307,10 +306,10 @@
             <div class="post-content site-prose margin-top-4">
             
               <p class="post-excerpt">
-                <p>Adding BroadCast Mail to All User Registered in Django Admin. This is my last problem, we need custom default Django...
+                Adding BroadCast Mail to All User Registered in Django Admin. This is my last problem, we need custom default Django...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Continue reading</a></p>
             
             </div>
           </article>
@@ -324,7 +323,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/replace-email-backend-gmail-to-postmarkapp-for-django/" style="text-decoration: none; color: #444;">
+                <a href="/replace-email-backend-gmail-to-postmarkapp-for-django/" style="text-decoration: none; color: #444;">
                 Replace backend gmail to Postmarkapp for Django
                 </a>
               </h1>
@@ -339,10 +338,10 @@
             <div class="post-content site-prose margin-top-4">
             
               <p class="post-excerpt">
-                <h4 id="1-install-module-of-python-postmark">1. Install module of Python Postmark</h4> <p>Install this module manually from souce inside your environtment: <a href="https://github.com/themartorana/python-postmark">https://github.com/themartorana/python-postmark</a></p> <blockquote> <p>If...
+                #### 1. Install module of Python Postmark Install this module manually from souce inside your environtment: [https://github.com/themartorana/python-postmark](https://github.com/themartorana/python-postmark) > If you...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/replace-email-backend-gmail-to-postmarkapp-for-django/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/replace-email-backend-gmail-to-postmarkapp-for-django/">Continue reading</a></p>
             
             </div>
           </article>
@@ -356,7 +355,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/download-recrusive-files-inside-index-of-in-linux-using-wget/" style="text-decoration: none; color: #444;">
+                <a href="/download-recrusive-files-inside-index-of-in-linux-using-wget/" style="text-decoration: none; color: #444;">
                 Download recrusive files inside index-of in Linux using wget
                 </a>
               </h1>
@@ -371,10 +370,10 @@
             <div class="post-content site-prose margin-top-4">
             
               <p class="post-excerpt">
-                <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ wget -r --no-parent --reject "index.html*" http://125.160.17.22/dokumen/IGN/Panduan_OpenOffice.org_2.0/ </code></pre></div></div> <p>For me I have to pass the –no-parent...
+                ``` $ wget -r --no-parent --reject "index.html*" http://125.160.17.22/dokumen/IGN/Panduan_OpenOffice.org_2.0/ ``` For me I have to pass the --no-parent option, otherwise it...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/download-recrusive-files-inside-index-of-in-linux-using-wget/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/download-recrusive-files-inside-index-of-in-linux-using-wget/">Continue reading</a></p>
             
             </div>
           </article>
@@ -388,7 +387,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/python-permutations/" style="text-decoration: none; color: #444;">
+                <a href="/python-permutations/" style="text-decoration: none; color: #444;">
                 Python Permutations
                 </a>
               </h1>
@@ -403,10 +402,10 @@
             <div class="post-content site-prose margin-top-4">
             
               <p class="post-excerpt">
-                <p>This simply how to implement the module of permutations in python.</p> <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">itertools</span>...
+                This simply how to implement the module of permutations in python. {% highlight ruby %} >>> from itertools import permutations...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/python-permutations/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/python-permutations/">Continue reading</a></p>
             
             </div>
           </article>
@@ -420,7 +419,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/simple-bash-scripting-for-login-before-open-the-terminal/" style="text-decoration: none; color: #444;">
+                <a href="/simple-bash-scripting-for-login-before-open-the-terminal/" style="text-decoration: none; color: #444;">
                 Simple bash scripting for login before open the terminal
                 </a>
               </h1>
@@ -435,10 +434,10 @@
             <div class="post-content site-prose margin-top-4">
             
               <p class="post-excerpt">
-                <p>Add this in your file of <code class="language-plaintext highlighter-rouge">/etc/bash.bashrc</code>, makesure you logged in as root.</p> <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">###...
+                Add this in your file of `/etc/bash.bashrc`, makesure you logged in as root. {% highlight ruby %} ### =============================================== ###...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/simple-bash-scripting-for-login-before-open-the-terminal/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/simple-bash-scripting-for-login-before-open-the-terminal/">Continue reading</a></p>
             
             </div>
           </article>
@@ -452,7 +451,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/remove-all-files-pyc-with-recrusive-method/" style="text-decoration: none; color: #444;">
+                <a href="/remove-all-files-pyc-with-recrusive-method/" style="text-decoration: none; color: #444;">
                 Remove all files .pyc with recrusive method
                 </a>
               </h1>
@@ -467,10 +466,10 @@
             <div class="post-content site-prose margin-top-4">
             
               <p class="post-excerpt">
-                <p>This method simple but important. Example in your project dir is like this:</p> <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">project_dir</span><span class="o">/</span> <span...
+                This method simple but important. Example in your project dir is like this: {% highlight ruby %} project_dir/ __init__.py __init__.pyc...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/remove-all-files-pyc-with-recrusive-method/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/remove-all-files-pyc-with-recrusive-method/">Continue reading</a></p>
             
             </div>
           </article>
@@ -484,7 +483,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/email-backend-with-smtp-gmail/" style="text-decoration: none; color: #444;">
+                <a href="/email-backend-with-smtp-gmail/" style="text-decoration: none; color: #444;">
                 Email BackEnd with SMTP Gmail
                 </a>
               </h1>
@@ -502,7 +501,7 @@
                 <p>Add this configurations in your <code class="language-plaintext highlighter-rouge">settings.py</code></p> <p>This configurations is if you work with <code class="language-plaintext highlighter-rouge">smtp.gmail.com</code>, other smtp...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/email-backend-with-smtp-gmail/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/email-backend-with-smtp-gmail/">Continue reading</a></p>
             
             </div>
           </article>
@@ -516,7 +515,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/welcome1-to-jekyll/" style="text-decoration: none; color: #444;">
+                <a href="/welcome1-to-jekyll/" style="text-decoration: none; color: #444;">
                 Welcome to Jekyll!
                 </a>
               </h1>
@@ -534,7 +533,7 @@
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> <script src="http://code.highcharts.com/highcharts.js"></script> <script src="https://code.highcharts.com/modules/variable-pie.js"></script> <script src="https://code.highcharts.com/modules/exporting.js"></script> <script src="https://code.highcharts.com/modules/export-data.js"></script> <script src="https://code.highcharts.com/modules/accessibility.js"></script> <div id="container" style="min-width: 310px; height: 400px; margin: 0...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/welcome1-to-jekyll/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/welcome1-to-jekyll/">Continue reading</a></p>
             
             </div>
           </article>

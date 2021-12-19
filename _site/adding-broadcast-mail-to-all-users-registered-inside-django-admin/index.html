@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Replace backend gmail to Postmarkapp for Django</title>
+    <title>Adding BroadCast Mail to All Users Registered inside Django Admin</title>
     <base href="/jekyll/">
     <link rel="stylesheet" href="./assets/uswds/css/uswds.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -219,39 +219,84 @@
     <div class="grid-container">
 
       <div class="post">
-    <h1 class="post-title">Replace backend gmail to Postmarkapp for Django</h1>
-    <h6 style="display:none">/jekyll/replace-email-backend-gmail-to-postmarkapp-for-django/</h6>
-    <h4>2016-04-19 18:45:33 +0530</h4>
-    <h5>   django</h5>
+    <h1 class="post-title">Adding BroadCast Mail to All Users Registered inside Django Admin</h1>
+    <h6 style="display:none">/adding-broadcast-mail-to-all-users-registered-inside-django-admin/</h6>
+    <h4>2016-04-20 18:21:02 +0530</h4>
+    <h5>   python, django</h5>
     <article class="post-content">
-        <h4 id="1-install-module-of-python-postmark">1. Install module of Python Postmark</h4>
+        <p>Adding BroadCast Mail to All User Registered in Django Admin. This is my last problem, we need custom default Django Admin to can submit BroadCast mail to All User. Because this is perfectly to make a promotions.</p>
 
-<p>Install this module manually from souce inside your environtment: <a href="https://github.com/themartorana/python-postmark">https://github.com/themartorana/python-postmark</a></p>
-
-<blockquote>
-  <p>If you work on <code class="language-plaintext highlighter-rouge">Django==1.9.*</code>, requirements only <code class="language-plaintext highlighter-rouge">mock</code>.</p>
-</blockquote>
-
-<h4 id="2-register-and-put-the-server-keys">2. Register and Put the Server Keys</h4>
-
-<p>Register and put your server API token here: https://account.postmarkapp.com/servers/101010/credentials . <code class="language-plaintext highlighter-rouge">101010</code> is id of your server.</p>
+<p>This problem has been helped by our Danny W. Adair who are answered someone’s question about the <a href="http://stackoverflow.com/a/5803941/3445802">“Django Admin Customizing”</a>.</p>
 
 <blockquote>
-  <p>Makesure verified your SPF and DKIM. this configurations to allowing the permission from your domain for signature.</p>
+  <p>In this configuration, we use gmail for email backend. Please following this tutorial first <a href="https://agusmakmun.github.io/python/django/2016/04/18/email-backend-with-smtp-gmail.html">Email BackEnd with SMTP Gmail</a>.</p>
 </blockquote>
 
-<h4 id="3-configure-in-settingspy">3. Configure in <code class="language-plaintext highlighter-rouge">settings.py</code></h4>
+<hr />
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">EMAIL_USE_TLS</span>        <span class="o">=</span> <span class="no">True</span>
-<span class="no">EMAIL_HOST</span>           <span class="o">=</span> <span class="s1">'smtp.postmarkapp.com'</span>
-<span class="no">EMAIL_PORT</span>           <span class="o">=</span> <span class="mi">587</span>
-<span class="no">POSTMARK_API_KEY</span>     <span class="o">=</span> <span class="s1">'yourkey-yourkey-yourkey-yourkey'</span>
-<span class="no">POSTMARK_SENDER</span>      <span class="o">=</span> <span class="s1">'your_company_email@domain.com'</span>
-<span class="no">EMAIL_HOST_USER</span>      <span class="o">=</span> <span class="no">POSTMARK_SENDER</span>
-<span class="no">DEFAULT_FROM_EMAIL</span>   <span class="o">=</span> <span class="no">POSTMARK_SENDER</span>
-<span class="no">POSTMARK_TEST_MODE</span>   <span class="o">=</span> <span class="no">False</span>
-<span class="no">POSTMARK_TRACK_OPENS</span> <span class="o">=</span> <span class="no">False</span>
-<span class="no">EMAIL_BACKEND</span>        <span class="o">=</span> <span class="s1">'postmark.django_backend.EmailBackend'</span></code></pre></figure>
+<p><strong>1.</strong> In your <code class="language-plaintext highlighter-rouge">models.py</code></p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">BroadCast_Email</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">subject</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">created</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">timezone</span><span class="p">.</span><span class="n">now</span><span class="p">)</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">RichTextUploadingField</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">subject</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">verbose_name</span> <span class="o">=</span> <span class="s">"BroadCast Email to all Member"</span>
+        <span class="n">verbose_name_plural</span> <span class="o">=</span> <span class="s">"BroadCast Email"</span></code></pre></figure>
+
+<hr />
+
+<p><strong>2.</strong> In your <code class="language-plaintext highlighter-rouge">admin.py</code>, importing some module for “admin” and for “email setup”.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="kn">import</span> <span class="n">mark_safe</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span> <span class="nn">django.core.mail</span> <span class="kn">import</span> <span class="p">(</span><span class="n">send_mail</span><span class="p">,</span> <span class="n">BadHeaderError</span><span class="p">,</span> <span class="n">EmailMessage</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+
+<span class="k">class</span> <span class="nc">EmailThread</span><span class="p">(</span><span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">html_content</span><span class="p">,</span> <span class="n">recipient_list</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">subject</span> <span class="o">=</span> <span class="n">subject</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">recipient_list</span> <span class="o">=</span> <span class="n">recipient_list</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">html_content</span> <span class="o">=</span> <span class="n">html_content</span>
+        <span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">EmailMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">subject</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">html_content</span><span class="p">,</span> <span class="n">settings</span><span class="p">.</span><span class="n">EMAIL_HOST_USER</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">recipient_list</span><span class="p">)</span>
+        <span class="n">msg</span><span class="p">.</span><span class="n">content_subtype</span> <span class="o">=</span> <span class="s">"html"</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">msg</span><span class="p">.</span><span class="n">send</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">BadHeaderError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">'Invalid header found.'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">BroadCast_Email_Admin</span><span class="p">(</span><span class="n">admin</span><span class="p">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">BroadCast_Email</span>
+
+    <span class="k">def</span> <span class="nf">submit_email</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span> <span class="c1">#`obj` is queryset, so there we only use first selection, exacly obj[0]
+</span>        <span class="n">list_email_user</span> <span class="o">=</span> <span class="p">[</span> <span class="n">p</span><span class="p">.</span><span class="n">email</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">User</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span> <span class="p">]</span> <span class="c1">#: if p.email != settings.EMAIL_HOST_USER   #this for exception
+</span>        <span class="n">obj_selected</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">EmailThread</span><span class="p">(</span><span class="n">obj_selected</span><span class="p">.</span><span class="n">subject</span><span class="p">,</span> <span class="n">mark_safe</span><span class="p">(</span><span class="n">obj_selected</span><span class="p">.</span><span class="n">message</span><span class="p">),</span> <span class="n">list_email_user</span><span class="p">).</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">submit_email</span><span class="p">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s">'Submit BroadCast (1 Select Only)'</span>
+    <span class="n">submit_email</span><span class="p">.</span><span class="n">allow_tags</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span> <span class="s">'submit_email'</span> <span class="p">]</span>
+
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">"subject"</span><span class="p">,</span> <span class="s">"created"</span><span class="p">)</span>
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s">'subject'</span><span class="p">,]</span>
+
+<span class="n">admin</span><span class="p">.</span><span class="n">site</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">BroadCast_Email</span><span class="p">,</span> <span class="n">BroadCast_Email_Admin</span><span class="p">)</span></code></pre></figure>
+
+<hr />
+
+<p><strong>3.</strong> And then, you can see. we have <strong>Submit BroadCast</strong> selection, just click button <strong>Go</strong> to submit broadcast mail.</p>
+
+<p><img src="https://raw.githubusercontent.com/agusmakmun/agusmakmun.github.io/master/static/img/_posts/Broadcast_Mail.png" alt="Screenshot broadcast" title="Screenshot broadcast" /></p>
 
     </article>
 </div>
@@ -270,7 +315,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/welcome-to-jekyll/" style="text-decoration: none; color: #444;">
+                <a href="/welcome-to-jekyll/" style="text-decoration: none; color: #444;">
                 Welcome to Jekyll!
                 </a>
               </h1>
@@ -288,7 +333,7 @@
                 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/welcome-to-jekyll/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/welcome-to-jekyll/">Continue reading</a></p>
             
             </div>
           </article>
@@ -302,7 +347,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/adding-broadcast-mail-to-all-users-registered-inside-django-admin/" style="text-decoration: none; color: #444;">
+                <a href="/adding-broadcast-mail-to-all-users-registered-inside-django-admin/" style="text-decoration: none; color: #444;">
                 Adding BroadCast Mail to All Users Registered inside Django Admin
                 </a>
               </h1>
@@ -317,10 +362,10 @@
             <div class="post-content site-prose margin-top-4">
             
               <p class="post-excerpt">
-                Adding BroadCast Mail to All User Registered in Django Admin. This is my last problem, we need custom default Django...
+                <p>Adding BroadCast Mail to All User Registered in Django Admin. This is my last problem, we need custom default Django...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Continue reading</a></p>
             
             </div>
           </article>
@@ -334,7 +379,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/replace-email-backend-gmail-to-postmarkapp-for-django/" style="text-decoration: none; color: #444;">
+                <a href="/replace-email-backend-gmail-to-postmarkapp-for-django/" style="text-decoration: none; color: #444;">
                 Replace backend gmail to Postmarkapp for Django
                 </a>
               </h1>
@@ -352,7 +397,7 @@
                 <h4 id="1-install-module-of-python-postmark">1. Install module of Python Postmark</h4> <p>Install this module manually from souce inside your environtment: <a href="https://github.com/themartorana/python-postmark">https://github.com/themartorana/python-postmark</a></p> <blockquote> <p>If...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/replace-email-backend-gmail-to-postmarkapp-for-django/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/replace-email-backend-gmail-to-postmarkapp-for-django/">Continue reading</a></p>
             
             </div>
           </article>
@@ -366,7 +411,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/download-recrusive-files-inside-index-of-in-linux-using-wget/" style="text-decoration: none; color: #444;">
+                <a href="/download-recrusive-files-inside-index-of-in-linux-using-wget/" style="text-decoration: none; color: #444;">
                 Download recrusive files inside index-of in Linux using wget
                 </a>
               </h1>
@@ -384,7 +429,7 @@
                 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ wget -r --no-parent --reject "index.html*" http://125.160.17.22/dokumen/IGN/Panduan_OpenOffice.org_2.0/ </code></pre></div></div> <p>For me I have to pass the –no-parent...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/download-recrusive-files-inside-index-of-in-linux-using-wget/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/download-recrusive-files-inside-index-of-in-linux-using-wget/">Continue reading</a></p>
             
             </div>
           </article>
@@ -398,7 +443,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/python-permutations/" style="text-decoration: none; color: #444;">
+                <a href="/python-permutations/" style="text-decoration: none; color: #444;">
                 Python Permutations
                 </a>
               </h1>
@@ -416,7 +461,7 @@
                 <p>This simply how to implement the module of permutations in python.</p> <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">itertools</span>...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/python-permutations/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/python-permutations/">Continue reading</a></p>
             
             </div>
           </article>
@@ -430,7 +475,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/simple-bash-scripting-for-login-before-open-the-terminal/" style="text-decoration: none; color: #444;">
+                <a href="/simple-bash-scripting-for-login-before-open-the-terminal/" style="text-decoration: none; color: #444;">
                 Simple bash scripting for login before open the terminal
                 </a>
               </h1>
@@ -448,7 +493,7 @@
                 <p>Add this in your file of <code class="language-plaintext highlighter-rouge">/etc/bash.bashrc</code>, makesure you logged in as root.</p> <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">###...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/simple-bash-scripting-for-login-before-open-the-terminal/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/simple-bash-scripting-for-login-before-open-the-terminal/">Continue reading</a></p>
             
             </div>
           </article>
@@ -462,7 +507,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/remove-all-files-pyc-with-recrusive-method/" style="text-decoration: none; color: #444;">
+                <a href="/remove-all-files-pyc-with-recrusive-method/" style="text-decoration: none; color: #444;">
                 Remove all files .pyc with recrusive method
                 </a>
               </h1>
@@ -480,7 +525,7 @@
                 <p>This method simple but important. Example in your project dir is like this:</p> <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">project_dir</span><span class="o">/</span> <span...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/remove-all-files-pyc-with-recrusive-method/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/remove-all-files-pyc-with-recrusive-method/">Continue reading</a></p>
             
             </div>
           </article>
@@ -494,7 +539,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/email-backend-with-smtp-gmail/" style="text-decoration: none; color: #444;">
+                <a href="/email-backend-with-smtp-gmail/" style="text-decoration: none; color: #444;">
                 Email BackEnd with SMTP Gmail
                 </a>
               </h1>
@@ -512,7 +557,7 @@
                 <p>Add this configurations in your <code class="language-plaintext highlighter-rouge">settings.py</code></p> <p>This configurations is if you work with <code class="language-plaintext highlighter-rouge">smtp.gmail.com</code>, other smtp...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/email-backend-with-smtp-gmail/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/email-backend-with-smtp-gmail/">Continue reading</a></p>
             
             </div>
           </article>
@@ -526,7 +571,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/welcome1-to-jekyll/" style="text-decoration: none; color: #444;">
+                <a href="/welcome1-to-jekyll/" style="text-decoration: none; color: #444;">
                 Welcome to Jekyll!
                 </a>
               </h1>
@@ -544,7 +589,7 @@
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> <script src="http://code.highcharts.com/highcharts.js"></script> <script src="https://code.highcharts.com/modules/variable-pie.js"></script> <script src="https://code.highcharts.com/modules/exporting.js"></script> <script src="https://code.highcharts.com/modules/export-data.js"></script> <script src="https://code.highcharts.com/modules/accessibility.js"></script> <div id="container" style="min-width: 310px; height: 400px; margin: 0...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/welcome1-to-jekyll/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/welcome1-to-jekyll/">Continue reading</a></p>
             
             </div>
           </article>

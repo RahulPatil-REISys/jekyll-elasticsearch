@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Python Permutations</title>
+    <title>Replace backend gmail to Postmarkapp for Django</title>
     <base href="/jekyll/">
     <link rel="stylesheet" href="./assets/uswds/css/uswds.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -219,27 +219,39 @@
     <div class="grid-container">
 
       <div class="post">
-    <h1 class="post-title">Python Permutations</h1>
-    <h6 style="display:none">/jekyll/python-permutations/</h6>
-    <h4>2016-04-19 18:01:43 +0530</h4>
-    <h5>   python</h5>
+    <h1 class="post-title">Replace backend gmail to Postmarkapp for Django</h1>
+    <h6 style="display:none">/replace-email-backend-gmail-to-postmarkapp-for-django/</h6>
+    <h4>2016-04-19 18:45:33 +0530</h4>
+    <h5>   django</h5>
     <article class="post-content">
-        <p>This simply how to implement the module of permutations in python.</p>
+        <h4 id="1-install-module-of-python-postmark">1. Install module of Python Postmark</h4>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">itertools</span> <span class="n">import</span> <span class="n">permutations</span>
-<span class="o">&gt;&gt;&gt;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">perms</span> <span class="o">=</span> <span class="p">[</span><span class="s1">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nb">p</span><span class="p">)</span><span class="o">+</span><span class="s2">"@gmail.com"</span> <span class="k">for</span> <span class="nb">p</span> <span class="k">in</span> <span class="n">permutations</span><span class="p">(</span><span class="s1">'abc'</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">email</span> <span class="k">in</span> <span class="ss">perms:
-</span><span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
-<span class="o">...</span>
-<span class="n">abc</span><span class="vi">@gmail</span><span class="p">.</span><span class="nf">com</span>
-<span class="n">acb</span><span class="vi">@gmail</span><span class="p">.</span><span class="nf">com</span>
-<span class="n">bac</span><span class="vi">@gmail</span><span class="p">.</span><span class="nf">com</span>
-<span class="n">bca</span><span class="vi">@gmail</span><span class="p">.</span><span class="nf">com</span>
-<span class="n">cab</span><span class="vi">@gmail</span><span class="p">.</span><span class="nf">com</span>
-<span class="n">cba</span><span class="vi">@gmail</span><span class="p">.</span><span class="nf">com</span>
-<span class="o">&gt;&gt;&gt;</span></code></pre></figure>
+<p>Install this module manually from souce inside your environtment: <a href="https://github.com/themartorana/python-postmark">https://github.com/themartorana/python-postmark</a></p>
 
+<blockquote>
+  <p>If you work on <code class="language-plaintext highlighter-rouge">Django==1.9.*</code>, requirements only <code class="language-plaintext highlighter-rouge">mock</code>.</p>
+</blockquote>
+
+<h4 id="2-register-and-put-the-server-keys">2. Register and Put the Server Keys</h4>
+
+<p>Register and put your server API token here: https://account.postmarkapp.com/servers/101010/credentials . <code class="language-plaintext highlighter-rouge">101010</code> is id of your server.</p>
+
+<blockquote>
+  <p>Makesure verified your SPF and DKIM. this configurations to allowing the permission from your domain for signature.</p>
+</blockquote>
+
+<h4 id="3-configure-in-settingspy">3. Configure in <code class="language-plaintext highlighter-rouge">settings.py</code></h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">EMAIL_USE_TLS</span>        <span class="o">=</span> <span class="no">True</span>
+<span class="no">EMAIL_HOST</span>           <span class="o">=</span> <span class="s1">'smtp.postmarkapp.com'</span>
+<span class="no">EMAIL_PORT</span>           <span class="o">=</span> <span class="mi">587</span>
+<span class="no">POSTMARK_API_KEY</span>     <span class="o">=</span> <span class="s1">'yourkey-yourkey-yourkey-yourkey'</span>
+<span class="no">POSTMARK_SENDER</span>      <span class="o">=</span> <span class="s1">'your_company_email@domain.com'</span>
+<span class="no">EMAIL_HOST_USER</span>      <span class="o">=</span> <span class="no">POSTMARK_SENDER</span>
+<span class="no">DEFAULT_FROM_EMAIL</span>   <span class="o">=</span> <span class="no">POSTMARK_SENDER</span>
+<span class="no">POSTMARK_TEST_MODE</span>   <span class="o">=</span> <span class="no">False</span>
+<span class="no">POSTMARK_TRACK_OPENS</span> <span class="o">=</span> <span class="no">False</span>
+<span class="no">EMAIL_BACKEND</span>        <span class="o">=</span> <span class="s1">'postmark.django_backend.EmailBackend'</span></code></pre></figure>
 
     </article>
 </div>
@@ -258,7 +270,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/welcome-to-jekyll/" style="text-decoration: none; color: #444;">
+                <a href="/welcome-to-jekyll/" style="text-decoration: none; color: #444;">
                 Welcome to Jekyll!
                 </a>
               </h1>
@@ -276,7 +288,7 @@
                 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/welcome-to-jekyll/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/welcome-to-jekyll/">Continue reading</a></p>
             
             </div>
           </article>
@@ -290,7 +302,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/adding-broadcast-mail-to-all-users-registered-inside-django-admin/" style="text-decoration: none; color: #444;">
+                <a href="/adding-broadcast-mail-to-all-users-registered-inside-django-admin/" style="text-decoration: none; color: #444;">
                 Adding BroadCast Mail to All Users Registered inside Django Admin
                 </a>
               </h1>
@@ -308,7 +320,7 @@
                 Adding BroadCast Mail to All User Registered in Django Admin. This is my last problem, we need custom default Django...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Continue reading</a></p>
             
             </div>
           </article>
@@ -322,7 +334,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/replace-email-backend-gmail-to-postmarkapp-for-django/" style="text-decoration: none; color: #444;">
+                <a href="/replace-email-backend-gmail-to-postmarkapp-for-django/" style="text-decoration: none; color: #444;">
                 Replace backend gmail to Postmarkapp for Django
                 </a>
               </h1>
@@ -337,10 +349,10 @@
             <div class="post-content site-prose margin-top-4">
             
               <p class="post-excerpt">
-                #### 1. Install module of Python Postmark Install this module manually from souce inside your environtment: [https://github.com/themartorana/python-postmark](https://github.com/themartorana/python-postmark) > If you...
+                <h4 id="1-install-module-of-python-postmark">1. Install module of Python Postmark</h4> <p>Install this module manually from souce inside your environtment: <a href="https://github.com/themartorana/python-postmark">https://github.com/themartorana/python-postmark</a></p> <blockquote> <p>If...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/replace-email-backend-gmail-to-postmarkapp-for-django/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/replace-email-backend-gmail-to-postmarkapp-for-django/">Continue reading</a></p>
             
             </div>
           </article>
@@ -354,7 +366,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/download-recrusive-files-inside-index-of-in-linux-using-wget/" style="text-decoration: none; color: #444;">
+                <a href="/download-recrusive-files-inside-index-of-in-linux-using-wget/" style="text-decoration: none; color: #444;">
                 Download recrusive files inside index-of in Linux using wget
                 </a>
               </h1>
@@ -369,10 +381,10 @@
             <div class="post-content site-prose margin-top-4">
             
               <p class="post-excerpt">
-                ``` $ wget -r --no-parent --reject "index.html*" http://125.160.17.22/dokumen/IGN/Panduan_OpenOffice.org_2.0/ ``` For me I have to pass the --no-parent option, otherwise it...
+                <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ wget -r --no-parent --reject "index.html*" http://125.160.17.22/dokumen/IGN/Panduan_OpenOffice.org_2.0/ </code></pre></div></div> <p>For me I have to pass the –no-parent...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/download-recrusive-files-inside-index-of-in-linux-using-wget/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/download-recrusive-files-inside-index-of-in-linux-using-wget/">Continue reading</a></p>
             
             </div>
           </article>
@@ -386,7 +398,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/python-permutations/" style="text-decoration: none; color: #444;">
+                <a href="/python-permutations/" style="text-decoration: none; color: #444;">
                 Python Permutations
                 </a>
               </h1>
@@ -404,7 +416,7 @@
                 <p>This simply how to implement the module of permutations in python.</p> <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">itertools</span>...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/python-permutations/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/python-permutations/">Continue reading</a></p>
             
             </div>
           </article>
@@ -418,7 +430,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/simple-bash-scripting-for-login-before-open-the-terminal/" style="text-decoration: none; color: #444;">
+                <a href="/simple-bash-scripting-for-login-before-open-the-terminal/" style="text-decoration: none; color: #444;">
                 Simple bash scripting for login before open the terminal
                 </a>
               </h1>
@@ -436,7 +448,7 @@
                 <p>Add this in your file of <code class="language-plaintext highlighter-rouge">/etc/bash.bashrc</code>, makesure you logged in as root.</p> <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">###...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/simple-bash-scripting-for-login-before-open-the-terminal/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/simple-bash-scripting-for-login-before-open-the-terminal/">Continue reading</a></p>
             
             </div>
           </article>
@@ -450,7 +462,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/remove-all-files-pyc-with-recrusive-method/" style="text-decoration: none; color: #444;">
+                <a href="/remove-all-files-pyc-with-recrusive-method/" style="text-decoration: none; color: #444;">
                 Remove all files .pyc with recrusive method
                 </a>
               </h1>
@@ -468,7 +480,7 @@
                 <p>This method simple but important. Example in your project dir is like this:</p> <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">project_dir</span><span class="o">/</span> <span...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/remove-all-files-pyc-with-recrusive-method/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/remove-all-files-pyc-with-recrusive-method/">Continue reading</a></p>
             
             </div>
           </article>
@@ -482,7 +494,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/email-backend-with-smtp-gmail/" style="text-decoration: none; color: #444;">
+                <a href="/email-backend-with-smtp-gmail/" style="text-decoration: none; color: #444;">
                 Email BackEnd with SMTP Gmail
                 </a>
               </h1>
@@ -500,7 +512,7 @@
                 <p>Add this configurations in your <code class="language-plaintext highlighter-rouge">settings.py</code></p> <p>This configurations is if you work with <code class="language-plaintext highlighter-rouge">smtp.gmail.com</code>, other smtp...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/email-backend-with-smtp-gmail/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/email-backend-with-smtp-gmail/">Continue reading</a></p>
             
             </div>
           </article>
@@ -514,7 +526,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/welcome1-to-jekyll/" style="text-decoration: none; color: #444;">
+                <a href="/welcome1-to-jekyll/" style="text-decoration: none; color: #444;">
                 Welcome to Jekyll!
                 </a>
               </h1>
@@ -532,7 +544,7 @@
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> <script src="http://code.highcharts.com/highcharts.js"></script> <script src="https://code.highcharts.com/modules/variable-pie.js"></script> <script src="https://code.highcharts.com/modules/exporting.js"></script> <script src="https://code.highcharts.com/modules/export-data.js"></script> <script src="https://code.highcharts.com/modules/accessibility.js"></script> <div id="container" style="min-width: 310px; height: 400px; margin: 0...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/welcome1-to-jekyll/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/welcome1-to-jekyll/">Continue reading</a></p>
             
             </div>
           </article>

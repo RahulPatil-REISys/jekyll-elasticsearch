@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Remove all files .pyc with recrusive method</title>
+    <title>Welcome to Jekyll!</title>
     <base href="/jekyll/">
     <link rel="stylesheet" href="./assets/uswds/css/uswds.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -219,34 +219,137 @@
     <div class="grid-container">
 
       <div class="post">
-    <h1 class="post-title">Remove all files .pyc with recrusive method</h1>
-    <h6 style="display:none">/jekyll/remove-all-files-pyc-with-recrusive-method/</h6>
-    <h4>2016-04-19 13:09:34 +0530</h4>
-    <h5>   python, bash</h5>
+    <h1 class="post-title">Welcome to Jekyll!</h1>
+    <h6 style="display:none">/welcome1-to-jekyll/</h6>
+    <h4>2013-02-19 19:58:15 +0530</h4>
+    <h5>   jekyll</h5>
     <article class="post-content">
-        <p>This method simple but important. Example in your project dir is like this:</p>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">project_dir</span><span class="o">/</span>
-           <span class="n">__init__</span><span class="p">.</span><span class="nf">py</span>
-           <span class="n">__init__</span><span class="p">.</span><span class="nf">pyc</span>
-           <span class="n">something</span><span class="p">.</span><span class="nf">py</span>
-           <span class="n">something</span><span class="p">.</span><span class="nf">pyc</span>
-           <span class="o">...</span>
-           <span class="n">core</span><span class="o">/</span>
-               <span class="n">__init__</span><span class="p">.</span><span class="nf">py</span>
-               <span class="n">__init__</span><span class="p">.</span><span class="nf">pyc</span>
-               <span class="n">build</span><span class="p">.</span><span class="nf">py</span>
-               <span class="n">build</span><span class="p">.</span><span class="nf">pyc</span></code></pre></figure>
+<script src="http://code.highcharts.com/highcharts.js"></script>
 
-<p>Deleting the <code class="language-plaintext highlighter-rouge">.pyc</code> files one by one would be spending a lot of time. and you will be bored. There is sample how to handle it.</p>
+<script src="https://code.highcharts.com/modules/variable-pie.js"></script>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ find your_dir -name *.pyc -delete
-</code></pre></div></div>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 
-<p>OR, if you work inside current directory.</p>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ find . -name *.pyc -delete
-</code></pre></div></div>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto">
+</div>
+
+<figure class="highcharts-figure">
+  <div id="container1"></div>
+  <p class="highcharts-description">
+    Variable radius pie charts can be used to visualize a
+    second dimension in a pie chart. In this chart, the more
+    densely populated countries are drawn further out, while the
+    slice width is determined by the size of the country.
+  </p>
+</figure>
+
+<script type="text/javascript">
+
+        $('#container').highcharts({
+            title: {
+                text: 'Monthly Average Temperature',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'Source: WorldClimate.com',
+                x: -20
+            },
+            xAxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+            yAxis: {
+                title: {
+                    text: 'Temperature (°C)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: '°C'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: 'Tokyo',
+                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+            }, {
+                name: 'New York',
+                data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+            }, {
+                name: 'Berlin',
+                data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+            }, {
+                name: 'London',
+                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+            }]
+        });
+
+        Highcharts.chart('container1', {
+          chart: {
+            type: 'variablepie'
+          },
+          title: {
+            text: 'Countries compared by population density and total area.'
+          },
+          tooltip: {
+            headerFormat: '',
+            pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+              'Area (square km): <b>{point.y}</b><br/>' +
+              'Population density (people per square km): <b>{point.z}</b><br/>'
+          },
+          series: [{
+            minPointSize: 10,
+            innerSize: '20%',
+            zMin: 0,
+            name: 'countries',
+            data: [{
+              name: 'Spain',
+              y: 505370,
+              z: 92.9
+            }, {
+              name: 'France',
+              y: 551500,
+              z: 118.7
+            }, {
+              name: 'Poland',
+              y: 312685,
+              z: 124.6
+            }, {
+              name: 'Czech Republic',
+              y: 78867,
+              z: 137.5
+            }, {
+              name: 'Italy',
+              y: 301340,
+              z: 201.8
+            }, {
+              name: 'Switzerland',
+              y: 41277,
+              z: 214.5
+            }, {
+              name: 'Germany',
+              y: 357022,
+              z: 235.6
+            }]
+          }]
+        });
+
+</script>
+
 
     </article>
 </div>
@@ -265,7 +368,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/welcome-to-jekyll/" style="text-decoration: none; color: #444;">
+                <a href="/welcome-to-jekyll/" style="text-decoration: none; color: #444;">
                 Welcome to Jekyll!
                 </a>
               </h1>
@@ -283,7 +386,7 @@
                 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/welcome-to-jekyll/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/welcome-to-jekyll/">Continue reading</a></p>
             
             </div>
           </article>
@@ -297,7 +400,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/adding-broadcast-mail-to-all-users-registered-inside-django-admin/" style="text-decoration: none; color: #444;">
+                <a href="/adding-broadcast-mail-to-all-users-registered-inside-django-admin/" style="text-decoration: none; color: #444;">
                 Adding BroadCast Mail to All Users Registered inside Django Admin
                 </a>
               </h1>
@@ -315,7 +418,7 @@
                 Adding BroadCast Mail to All User Registered in Django Admin. This is my last problem, we need custom default Django...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Continue reading</a></p>
             
             </div>
           </article>
@@ -329,7 +432,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/replace-email-backend-gmail-to-postmarkapp-for-django/" style="text-decoration: none; color: #444;">
+                <a href="/replace-email-backend-gmail-to-postmarkapp-for-django/" style="text-decoration: none; color: #444;">
                 Replace backend gmail to Postmarkapp for Django
                 </a>
               </h1>
@@ -347,7 +450,7 @@
                 #### 1. Install module of Python Postmark Install this module manually from souce inside your environtment: [https://github.com/themartorana/python-postmark](https://github.com/themartorana/python-postmark) > If you...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/replace-email-backend-gmail-to-postmarkapp-for-django/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/replace-email-backend-gmail-to-postmarkapp-for-django/">Continue reading</a></p>
             
             </div>
           </article>
@@ -361,7 +464,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/download-recrusive-files-inside-index-of-in-linux-using-wget/" style="text-decoration: none; color: #444;">
+                <a href="/download-recrusive-files-inside-index-of-in-linux-using-wget/" style="text-decoration: none; color: #444;">
                 Download recrusive files inside index-of in Linux using wget
                 </a>
               </h1>
@@ -379,7 +482,7 @@
                 ``` $ wget -r --no-parent --reject "index.html*" http://125.160.17.22/dokumen/IGN/Panduan_OpenOffice.org_2.0/ ``` For me I have to pass the --no-parent option, otherwise it...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/download-recrusive-files-inside-index-of-in-linux-using-wget/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/download-recrusive-files-inside-index-of-in-linux-using-wget/">Continue reading</a></p>
             
             </div>
           </article>
@@ -393,7 +496,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/python-permutations/" style="text-decoration: none; color: #444;">
+                <a href="/python-permutations/" style="text-decoration: none; color: #444;">
                 Python Permutations
                 </a>
               </h1>
@@ -411,7 +514,7 @@
                 This simply how to implement the module of permutations in python. {% highlight ruby %} >>> from itertools import permutations...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/python-permutations/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/python-permutations/">Continue reading</a></p>
             
             </div>
           </article>
@@ -425,7 +528,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/simple-bash-scripting-for-login-before-open-the-terminal/" style="text-decoration: none; color: #444;">
+                <a href="/simple-bash-scripting-for-login-before-open-the-terminal/" style="text-decoration: none; color: #444;">
                 Simple bash scripting for login before open the terminal
                 </a>
               </h1>
@@ -443,7 +546,7 @@
                 Add this in your file of `/etc/bash.bashrc`, makesure you logged in as root. {% highlight ruby %} ### =============================================== ###...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/simple-bash-scripting-for-login-before-open-the-terminal/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/simple-bash-scripting-for-login-before-open-the-terminal/">Continue reading</a></p>
             
             </div>
           </article>
@@ -457,7 +560,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/remove-all-files-pyc-with-recrusive-method/" style="text-decoration: none; color: #444;">
+                <a href="/remove-all-files-pyc-with-recrusive-method/" style="text-decoration: none; color: #444;">
                 Remove all files .pyc with recrusive method
                 </a>
               </h1>
@@ -472,10 +575,10 @@
             <div class="post-content site-prose margin-top-4">
             
               <p class="post-excerpt">
-                <p>This method simple but important. Example in your project dir is like this:</p> <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">project_dir</span><span class="o">/</span> <span...
+                This method simple but important. Example in your project dir is like this: {% highlight ruby %} project_dir/ __init__.py __init__.pyc...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/remove-all-files-pyc-with-recrusive-method/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/remove-all-files-pyc-with-recrusive-method/">Continue reading</a></p>
             
             </div>
           </article>
@@ -489,7 +592,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/email-backend-with-smtp-gmail/" style="text-decoration: none; color: #444;">
+                <a href="/email-backend-with-smtp-gmail/" style="text-decoration: none; color: #444;">
                 Email BackEnd with SMTP Gmail
                 </a>
               </h1>
@@ -504,10 +607,10 @@
             <div class="post-content site-prose margin-top-4">
             
               <p class="post-excerpt">
-                <p>Add this configurations in your <code class="language-plaintext highlighter-rouge">settings.py</code></p> <p>This configurations is if you work with <code class="language-plaintext highlighter-rouge">smtp.gmail.com</code>, other smtp...
+                Add this configurations in your `settings.py` This configurations is if you work with `smtp.gmail.com`, other smtp is similiar with configurations....
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/email-backend-with-smtp-gmail/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/email-backend-with-smtp-gmail/">Continue reading</a></p>
             
             </div>
           </article>
@@ -521,7 +624,7 @@
               </p>
           
               <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
-                <a href="/jekyll/welcome1-to-jekyll/" style="text-decoration: none; color: #444;">
+                <a href="/welcome1-to-jekyll/" style="text-decoration: none; color: #444;">
                 Welcome to Jekyll!
                 </a>
               </h1>
@@ -539,7 +642,7 @@
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> <script src="http://code.highcharts.com/highcharts.js"></script> <script src="https://code.highcharts.com/modules/variable-pie.js"></script> <script src="https://code.highcharts.com/modules/exporting.js"></script> <script src="https://code.highcharts.com/modules/export-data.js"></script> <script src="https://code.highcharts.com/modules/accessibility.js"></script> <div id="container" style="min-width: 310px; height: 400px; margin: 0...
               </p>
           
-              <p class="post-more margin-top-2"><a href="/jekyll/welcome1-to-jekyll/">Continue reading</a></p>
+              <p class="post-more margin-top-2"><a href="/welcome1-to-jekyll/">Continue reading</a></p>
             
             </div>
           </article>
