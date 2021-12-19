@@ -135,7 +135,7 @@
             </button>
             <span class="ds-dropdown-menu ds-with-1" role="listbox" id="algolia-autocomplete-listbox-0" style="position: absolute; top: 100%; z-index: 100; left: 0px; right: auto; display: block;width: 100%;">
                 <div class="ds-dataset-1" style="max-height: 400px;overflow: auto;">
-                <ul id="results-container" style="padding-left: 15px; background-color: #EEE;"></ul>
+                <ul id="results-container" style="padding-left: 15px;list-style-type: none; background-color: #EEE;"></ul>
                 </div>
             </span>
         </form>
@@ -175,24 +175,17 @@
                 query: { match_all: val  }
             };
             query = JSON.stringify(query);
-            // $.ajax({url: "http://localhost:9200/_search?q="+val, 
-            $.ajax({url: `https://root:Qwertyuiop@1@search-jekyll-elastic-ai4o4zzpivjsiwshxfkh5nlhaq.us-east-2.es.amazonaws.com/_search?q=${val}`,
-            // $.ajax({url: `https://search-jekyll-elastic-ai4o4zzpivjsiwshxfkh5nlhaq.us-east-2.es.amazonaws.com/_dashboards/api/console/proxy?path=_search%3Fq%3Dpython&method=GET`,
-                // type: 'post',
-                // dataType: 'json',
-                // data : JSON.stringify(query),
-                // username:'root',
-                // password:'Qwertyuiop@1',
+            $.ajax({url: "http://localhost:3000/api/v1/blogs?blog="+val, 
                 success: function(result) {
                 $('#results-container').empty();
-                console.log(result);
-                console.log(result.hits.hits);
-                $.each(result.hits.hits,function(index,res){
-                    console.log(res._source);
+                // console.log(result);
+                // console.log(result.blogs);
+                $.each(result.blogs,function(index,res){
+                    // console.log(res._source);
                     var li = `<li> <a href="${res._source.url}"><h3>${res._source.title}</h3></a><span>${res._source.date}</span> </li>`;
                     $('#results-container').append(li);
                 });
-                if(val.length != 0 && result.hits.hits.length == 0){
+                if(val.length != 0 && result.blogs.length == 0){
                     var li = `<li> <h3>No Result Found</h3></li>`;
                     $('#results-container').append(li);
                 } else if(val.length == 0) {

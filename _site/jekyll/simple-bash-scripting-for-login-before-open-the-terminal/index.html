@@ -7,11 +7,11 @@
 <head>
     <meta charset="utf-8">
     <title>Simple bash scripting for login before open the terminal</title>
-    <base href="/jekyll">
+    <base href="/jekyll/">
     <link rel="stylesheet" href="./assets/uswds/css/uswds.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<body>
+<body style="background-color: #fcfcfc;">
     <a class="usa-skipnav" href="#main-content">Skip to main content</a>
 <section class="usa-banner" aria-label="Official government website">
     <div class="usa-accordion">
@@ -149,7 +149,7 @@
             </button>
             <span class="ds-dropdown-menu ds-with-1" role="listbox" id="algolia-autocomplete-listbox-0" style="position: absolute; top: 100%; z-index: 100; left: 0px; right: auto; display: block;width: 100%;">
                 <div class="ds-dataset-1" style="max-height: 400px;overflow: auto;">
-                <ul id="results-container" style="padding-left: 15px; background-color: #EEE;"></ul>
+                <ul id="results-container" style="padding-left: 15px;list-style-type: none; background-color: #EEE;"></ul>
                 </div>
             </span>
         </form>
@@ -189,24 +189,17 @@
                 query: { match_all: val  }
             };
             query = JSON.stringify(query);
-            // $.ajax({url: "http://localhost:9200/_search?q="+val, 
-            $.ajax({url: `https://root:Qwertyuiop@1@search-jekyll-elastic-ai4o4zzpivjsiwshxfkh5nlhaq.us-east-2.es.amazonaws.com/_search?q=${val}`,
-            // $.ajax({url: `https://search-jekyll-elastic-ai4o4zzpivjsiwshxfkh5nlhaq.us-east-2.es.amazonaws.com/_dashboards/api/console/proxy?path=_search%3Fq%3Dpython&method=GET`,
-                // type: 'post',
-                // dataType: 'json',
-                // data : JSON.stringify(query),
-                // username:'root',
-                // password:'Qwertyuiop@1',
+            $.ajax({url: "http://localhost:3000/api/v1/blogs?blog="+val, 
                 success: function(result) {
                 $('#results-container').empty();
-                console.log(result);
-                console.log(result.hits.hits);
-                $.each(result.hits.hits,function(index,res){
-                    console.log(res._source);
+                // console.log(result);
+                // console.log(result.blogs);
+                $.each(result.blogs,function(index,res){
+                    // console.log(res._source);
                     var li = `<li> <a href="${res._source.url}"><h3>${res._source.title}</h3></a><span>${res._source.date}</span> </li>`;
                     $('#results-container').append(li);
                 });
-                if(val.length != 0 && result.hits.hits.length == 0){
+                if(val.length != 0 && result.blogs.length == 0){
                     var li = `<li> <h3>No Result Found</h3></li>`;
                     $('#results-container').append(li);
                 } else if(val.length == 0) {
@@ -223,11 +216,11 @@
         // console.log('ajax');
 </script>
     <hr>
+    <div class="grid-container">
 
-    <section class="grid-container usa-section">
-        <div class="post">
+      <div class="post">
     <h1 class="post-title">Simple bash scripting for login before open the terminal</h1>
-    <h6 style="display:none">/jekyll/post/simple-bash-scripting-for-login-before-open-the-terminal/</h6>
+    <h6 style="display:none">/jekyll/simple-bash-scripting-for-login-before-open-the-terminal/</h6>
     <h4>2016-04-19 17:49:21 +0530</h4>
     <h5>   bash</h5>
     <article class="post-content">
@@ -265,60 +258,300 @@
 
 
 
-        
-        <!-- <ul>
-            
-            <li><a name="jekyll">jekyll</a>
-                <ul>
-                
-                  <li><a href="/jekyll/post/welcome-to-jekyll/">Welcome to Jekyll!</a></li>
-                
-                  <li><a href="/jekyll/post/welcome1-to-jekyll/">Welcome to Jekyll!</a></li>
-                
-                </ul>
-              </li>
-            
-            <li><a name="python">python</a>
-                <ul>
-                
-                  <li><a href="/jekyll/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
-                
-                  <li><a href="/jekyll/post/python-permutations/">Python Permutations</a></li>
-                
-                  <li><a href="/jekyll/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
-                
-                  <li><a href="/jekyll/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
-                
-                </ul>
-              </li>
-            
-            <li><a name="django">django</a>
-                <ul>
-                
-                  <li><a href="/jekyll/post/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Adding BroadCast Mail to All Users Registered inside Django Admin</a></li>
-                
-                  <li><a href="/jekyll/post/replace-email-backend-gmail-to-postmarkapp-for-django/">Replace backend gmail to Postmarkapp for Django</a></li>
-                
-                  <li><a href="/jekyll/post/email-backend-with-smtp-gmail/">Email BackEnd with SMTP Gmail</a></li>
-                
-                </ul>
-              </li>
-            
-            <li><a name="bash">bash</a>
-                <ul>
-                
-                  <li><a href="/jekyll/post/download-recrusive-files-inside-index-of-in-linux-using-wget/">Download recrusive files inside index-of in Linux using wget</a></li>
-                
-                  <li><a href="/jekyll/post/simple-bash-scripting-for-login-before-open-the-terminal/">Simple bash scripting for login before open the terminal</a></li>
-                
-                  <li><a href="/jekyll/post/remove-all-files-pyc-with-recrusive-method/">Remove all files .pyc with recrusive method</a></li>
-                
-                </ul>
-              </li>
-            
-            </ul> -->
+    </div>
+    <!-- <section class="grid-container usa-section">
+          <h1>Blogs</h1>
+          
 
-    </section>
+          <article class="post-excerpt padding-top-2 border-top-2px margin-top-4 measure-6">
+            <header class="post-meta">
+              <p class="post-category site-subheading">
+                updates
+              </p>
+          
+              <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
+                <a href="/jekyll/welcome-to-jekyll/" style="text-decoration: none; color: #444;">
+                Welcome to Jekyll!
+                </a>
+              </h1>
+          
+              
+              
+              <time class="post-date site-subheading" datetime="2021-11-19 14:37:00 +0530">
+                2021-11-19 14:37:00 +0530
+              </time>
+            </header>
+          
+            <div class="post-content site-prose margin-top-4">
+            
+              <p class="post-excerpt">
+                You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your...
+              </p>
+          
+              <p class="post-more margin-top-2"><a href="/jekyll/welcome-to-jekyll/">Continue reading</a></p>
+            
+            </div>
+          </article>
+
+          
+
+          <article class="post-excerpt padding-top-2 border-top-2px margin-top-4 measure-6">
+            <header class="post-meta">
+              <p class="post-category site-subheading">
+                updates
+              </p>
+          
+              <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
+                <a href="/jekyll/adding-broadcast-mail-to-all-users-registered-inside-django-admin/" style="text-decoration: none; color: #444;">
+                Adding BroadCast Mail to All Users Registered inside Django Admin
+                </a>
+              </h1>
+          
+              
+              
+              <time class="post-date site-subheading" datetime="2016-04-20 18:21:02 +0530">
+                2016-04-20 18:21:02 +0530
+              </time>
+            </header>
+          
+            <div class="post-content site-prose margin-top-4">
+            
+              <p class="post-excerpt">
+                Adding BroadCast Mail to All User Registered in Django Admin. This is my last problem, we need custom default Django...
+              </p>
+          
+              <p class="post-more margin-top-2"><a href="/jekyll/adding-broadcast-mail-to-all-users-registered-inside-django-admin/">Continue reading</a></p>
+            
+            </div>
+          </article>
+
+          
+
+          <article class="post-excerpt padding-top-2 border-top-2px margin-top-4 measure-6">
+            <header class="post-meta">
+              <p class="post-category site-subheading">
+                updates
+              </p>
+          
+              <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
+                <a href="/jekyll/replace-email-backend-gmail-to-postmarkapp-for-django/" style="text-decoration: none; color: #444;">
+                Replace backend gmail to Postmarkapp for Django
+                </a>
+              </h1>
+          
+              
+              
+              <time class="post-date site-subheading" datetime="2016-04-19 18:45:33 +0530">
+                2016-04-19 18:45:33 +0530
+              </time>
+            </header>
+          
+            <div class="post-content site-prose margin-top-4">
+            
+              <p class="post-excerpt">
+                #### 1. Install module of Python Postmark Install this module manually from souce inside your environtment: [https://github.com/themartorana/python-postmark](https://github.com/themartorana/python-postmark) > If you...
+              </p>
+          
+              <p class="post-more margin-top-2"><a href="/jekyll/replace-email-backend-gmail-to-postmarkapp-for-django/">Continue reading</a></p>
+            
+            </div>
+          </article>
+
+          
+
+          <article class="post-excerpt padding-top-2 border-top-2px margin-top-4 measure-6">
+            <header class="post-meta">
+              <p class="post-category site-subheading">
+                updates
+              </p>
+          
+              <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
+                <a href="/jekyll/download-recrusive-files-inside-index-of-in-linux-using-wget/" style="text-decoration: none; color: #444;">
+                Download recrusive files inside index-of in Linux using wget
+                </a>
+              </h1>
+          
+              
+              
+              <time class="post-date site-subheading" datetime="2016-04-19 18:09:02 +0530">
+                2016-04-19 18:09:02 +0530
+              </time>
+            </header>
+          
+            <div class="post-content site-prose margin-top-4">
+            
+              <p class="post-excerpt">
+                ``` $ wget -r --no-parent --reject "index.html*" http://125.160.17.22/dokumen/IGN/Panduan_OpenOffice.org_2.0/ ``` For me I have to pass the --no-parent option, otherwise it...
+              </p>
+          
+              <p class="post-more margin-top-2"><a href="/jekyll/download-recrusive-files-inside-index-of-in-linux-using-wget/">Continue reading</a></p>
+            
+            </div>
+          </article>
+
+          
+
+          <article class="post-excerpt padding-top-2 border-top-2px margin-top-4 measure-6">
+            <header class="post-meta">
+              <p class="post-category site-subheading">
+                updates
+              </p>
+          
+              <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
+                <a href="/jekyll/python-permutations/" style="text-decoration: none; color: #444;">
+                Python Permutations
+                </a>
+              </h1>
+          
+              
+              
+              <time class="post-date site-subheading" datetime="2016-04-19 18:01:43 +0530">
+                2016-04-19 18:01:43 +0530
+              </time>
+            </header>
+          
+            <div class="post-content site-prose margin-top-4">
+            
+              <p class="post-excerpt">
+                This simply how to implement the module of permutations in python. {% highlight ruby %} >>> from itertools import permutations...
+              </p>
+          
+              <p class="post-more margin-top-2"><a href="/jekyll/python-permutations/">Continue reading</a></p>
+            
+            </div>
+          </article>
+
+          
+
+          <article class="post-excerpt padding-top-2 border-top-2px margin-top-4 measure-6">
+            <header class="post-meta">
+              <p class="post-category site-subheading">
+                updates
+              </p>
+          
+              <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
+                <a href="/jekyll/simple-bash-scripting-for-login-before-open-the-terminal/" style="text-decoration: none; color: #444;">
+                Simple bash scripting for login before open the terminal
+                </a>
+              </h1>
+          
+              
+              
+              <time class="post-date site-subheading" datetime="2016-04-19 17:49:21 +0530">
+                2016-04-19 17:49:21 +0530
+              </time>
+            </header>
+          
+            <div class="post-content site-prose margin-top-4">
+            
+              <p class="post-excerpt">
+                <p>Add this in your file of <code class="language-plaintext highlighter-rouge">/etc/bash.bashrc</code>, makesure you logged in as root.</p> <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">###...
+              </p>
+          
+              <p class="post-more margin-top-2"><a href="/jekyll/simple-bash-scripting-for-login-before-open-the-terminal/">Continue reading</a></p>
+            
+            </div>
+          </article>
+
+          
+
+          <article class="post-excerpt padding-top-2 border-top-2px margin-top-4 measure-6">
+            <header class="post-meta">
+              <p class="post-category site-subheading">
+                updates
+              </p>
+          
+              <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
+                <a href="/jekyll/remove-all-files-pyc-with-recrusive-method/" style="text-decoration: none; color: #444;">
+                Remove all files .pyc with recrusive method
+                </a>
+              </h1>
+          
+              
+              
+              <time class="post-date site-subheading" datetime="2016-04-19 13:09:34 +0530">
+                2016-04-19 13:09:34 +0530
+              </time>
+            </header>
+          
+            <div class="post-content site-prose margin-top-4">
+            
+              <p class="post-excerpt">
+                <p>This method simple but important. Example in your project dir is like this:</p> <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">project_dir</span><span class="o">/</span> <span...
+              </p>
+          
+              <p class="post-more margin-top-2"><a href="/jekyll/remove-all-files-pyc-with-recrusive-method/">Continue reading</a></p>
+            
+            </div>
+          </article>
+
+          
+
+          <article class="post-excerpt padding-top-2 border-top-2px margin-top-4 measure-6">
+            <header class="post-meta">
+              <p class="post-category site-subheading">
+                updates
+              </p>
+          
+              <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
+                <a href="/jekyll/email-backend-with-smtp-gmail/" style="text-decoration: none; color: #444;">
+                Email BackEnd with SMTP Gmail
+                </a>
+              </h1>
+          
+              
+              
+              <time class="post-date site-subheading" datetime="2016-04-19 00:58:15 +0530">
+                2016-04-19 00:58:15 +0530
+              </time>
+            </header>
+          
+            <div class="post-content site-prose margin-top-4">
+            
+              <p class="post-excerpt">
+                <p>Add this configurations in your <code class="language-plaintext highlighter-rouge">settings.py</code></p> <p>This configurations is if you work with <code class="language-plaintext highlighter-rouge">smtp.gmail.com</code>, other smtp...
+              </p>
+          
+              <p class="post-more margin-top-2"><a href="/jekyll/email-backend-with-smtp-gmail/">Continue reading</a></p>
+            
+            </div>
+          </article>
+
+          
+
+          <article class="post-excerpt padding-top-2 border-top-2px margin-top-4 measure-6">
+            <header class="post-meta">
+              <p class="post-category site-subheading">
+                updates
+              </p>
+          
+              <h1 class="post-title font-lang-11 tablet:font-lang-14 text-thin">
+                <a href="/jekyll/welcome1-to-jekyll/" style="text-decoration: none; color: #444;">
+                Welcome to Jekyll!
+                </a>
+              </h1>
+          
+              
+              
+              <time class="post-date site-subheading" datetime="2013-02-19 19:58:15 +0530">
+                2013-02-19 19:58:15 +0530
+              </time>
+            </header>
+          
+            <div class="post-content site-prose margin-top-4">
+            
+              <p class="post-excerpt">
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> <script src="http://code.highcharts.com/highcharts.js"></script> <script src="https://code.highcharts.com/modules/variable-pie.js"></script> <script src="https://code.highcharts.com/modules/exporting.js"></script> <script src="https://code.highcharts.com/modules/export-data.js"></script> <script src="https://code.highcharts.com/modules/accessibility.js"></script> <div id="container" style="min-width: 310px; height: 400px; margin: 0...
+              </p>
+          
+              <p class="post-more margin-top-2"><a href="/jekyll/welcome1-to-jekyll/">Continue reading</a></p>
+            
+            </div>
+          </article>
+
+          
+
+    </section> -->
 
     <footer class="usa-footer">
     <div class="grid-container usa-footer__return-to-top">
@@ -485,3 +718,6 @@
     <!-- Script pointing to search-script.js -->
 </body>
 </html>
+
+
+
