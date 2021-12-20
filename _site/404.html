@@ -189,7 +189,8 @@
                 query: { match_all: val  }
             };
             query = JSON.stringify(query);
-            $.ajax({url: "http://localhost:3000/api/v1/blogs?blog="+val, 
+            // $.ajax({url: "http://localhost:3001/api/v1/blogs?blog="+val, 
+            $.ajax({url: "https://qa1.reisystems.in:9001/api/v1/blogs?blog="+val, 
                 success: function(result) {
                 $('#results-container').empty();
                 // console.log(result);
