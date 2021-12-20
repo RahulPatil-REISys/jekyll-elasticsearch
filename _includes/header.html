@@ -183,7 +183,8 @@
                 // console.log(result.blogs);
                 $.each(result.blogs,function(index,res){
                     // console.log(res._source);
-                    var li = `<li> <a href="${res._source.url}"><h3>${res._source.title}</h3></a><span>${res._source.date}</span> </li>`;
+                    var li = `<li> <a href="/jekyll${res._source.url}"><h3>${res._source.title}</h3></a><span>${res._source.date}</span> </li>`;
+                    console.log(li);
                     $('#results-container').append(li);
                 });
                 if(val.length != 0 && result.blogs.length == 0){
