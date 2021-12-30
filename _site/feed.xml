@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-12-20T18:07:36+05:30</updated><id>/feed.xml</id><title type="html">Blogging</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2021-11-19T14:37:00+05:30</published><updated>2021-11-19T14:37:00+05:30</updated><id>/welcome-to-jekyll</id><content type="html" xml:base="/welcome-to-jekyll/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-12-30T18:01:50+05:30</updated><id>/feed.xml</id><title type="html">Blogging</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2021-11-19T14:37:00+05:30</published><updated>2021-11-19T14:37:00+05:30</updated><id>/welcome-to-jekyll</id><content type="html" xml:base="/welcome-to-jekyll/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
 
 &lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
 
@@ -222,9 +222,9 @@ EMAIL_HOST_PASSWORD = 'your_password'
 EMAIL_USE_TLS       = True
 DEFAULT_FROM_EMAIL  = EMAIL_HOST_USER
 EMAIL_BACKEND       = 'django.core.mail.backends.smtp.EmailBackend'
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="python" /><category term="django" /><summary type="html">Add this configurations in your settings.py</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="/welcome1-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2013-02-19T19:58:15+05:30</published><updated>2013-02-19T19:58:15+05:30</updated><id>/welcome1-to-jekyll</id><content type="html" xml:base="/welcome1-to-jekyll/">&lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><category term="python" /><category term="django" /><summary type="html">Add this configurations in your settings.py</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="/welcome1-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2013-02-19T19:58:15+05:30</published><updated>2013-02-19T19:58:15+05:30</updated><id>/welcome1-to-jekyll</id><content type="html" xml:base="/welcome1-to-jekyll/">&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js&quot;&gt;&lt;/script&gt;
 
-&lt;script src=&quot;http://code.highcharts.com/highcharts.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://code.highcharts.com/highcharts.js&quot;&gt;&lt;/script&gt;
 
 &lt;script src=&quot;https://code.highcharts.com/modules/variable-pie.js&quot;&gt;&lt;/script&gt;
 
@@ -247,20 +247,23 @@ EMAIL_BACKEND       = 'django.core.mail.backends.smtp.EmailBackend'
   &lt;/p&gt;
 &lt;/figure&gt;
 
-&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;script&gt;
 
-        $('#container').highcharts({
+  $.ajax({url: &quot;https://qa1.reisystems.in:9001/api/v1/blogs?blog=welcome1-to-jekyll&quot;, 
+  success: function(result) {
+    console.log(result.blogs[0]._source.xcategories)
+    console.log(typeof result.blogs[0]._source.xcategories)
+    console.log(JSON.parse(result.blogs[0]._source.xcategories))
+    
+    console.log(result.blogs[0]._source.yseries)
+
+    $('#container').highcharts({
             title: {
                 text: 'Monthly Average Temperature',
                 x: -20 //center
             },
-            subtitle: {
-                text: 'Source: WorldClimate.com',
-                x: -20
-            },
             xAxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                categories: JSON.parse(result.blogs[0]._source.xcategories)
             },
             yAxis: {
                 title: {
@@ -281,20 +284,14 @@ EMAIL_BACKEND       = 'django.core.mail.backends.smtp.EmailBackend'
                 verticalAlign: 'middle',
                 borderWidth: 0
             },
-            series: [{
-                name: 'Tokyo',
-                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-            }, {
-                name: 'New York',
-                data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-            }, {
-                name: 'Berlin',
-                data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-            }, {
-                name: 'London',
-                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-            }]
+            series: JSON.parse(result.blogs[0]._source.yseries)
         });
+
+  },error:function(err){
+      console.log(err);
+  }});
+        
+
 
         Highcharts.chart('container1', {
           chart: {

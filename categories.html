@@ -17,7 +17,7 @@ title: Categories
     <article class="archive-item">
     {% for post in site.categories[category_name] %}
       <h4>
-        <a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a>
+        <a href="{{ site.baseurl }}/jekyll/{{ post.url }}">{{post.title}}</a>
       </h4>
       {% endfor %}
     </article>
